@@ -47,7 +47,7 @@ class Toner(models.Model):
     identificador = models.CharField(max_length=200,null=False)
     proveedor = models.ForeignKey(Proveedor, null=True)
     estados = models.ManyToManyField(Estado)
-
+    estados = models.ManyToManyField(Estado, through='EstadoToner')
     
     class Meta:
         db_table = 'toners'
@@ -56,3 +56,16 @@ class Toner(models.Model):
     def __str__(self):
         return self.nombre
 
+    
+class EstadoToner(models.Model):
+    estado = models.ForeignKey(Estado)
+    toner = models.ForeignKey(Toner)
+    fecha_inicio = models.DateField()
+    fecha_fin = models.DateField()
+
+    class Meta:
+        db_table = 'estados_toners'
+        verbose_name_plural = 'EstadosToners'
+        
+    def __str__(self):
+        return self.nombre

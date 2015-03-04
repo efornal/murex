@@ -23,6 +23,20 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.CreateModel(
+            name='EstadoToner',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('fecha_inicio', models.DateField()),
+                ('fecha_fin', models.DateField()),
+                ('estado', models.ForeignKey(to='app.Estado')),
+            ],
+            options={
+                'db_table': 'estados_toners',
+                'verbose_name_plural': 'EstadosToners',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
             name='Impresora',
             fields=[
                 ('id', models.AutoField(serialize=False, primary_key=True)),
@@ -56,7 +70,7 @@ class Migration(migrations.Migration):
                 ('marca', models.CharField(max_length=200)),
                 ('modelo', models.CharField(max_length=200)),
                 ('identificador', models.CharField(max_length=200)),
-                ('estados', models.ManyToManyField(to='app.Estado')),
+                ('estados', models.ManyToManyField(to='app.Estado', through='app.EstadoToner')),
                 ('proveedor', models.ForeignKey(to='app.Proveedor', null=True)),
             ],
             options={
@@ -64,5 +78,11 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'Toners',
             },
             bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='estadotoner',
+            name='toner',
+            field=models.ForeignKey(to='app.Toner'),
+            preserve_default=True,
         ),
     ]
