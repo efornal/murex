@@ -1,0 +1,24 @@
+- model: app.estado
+  pk: 1
+  fields:
+    nombre: En Impresora
+- model: app.estado
+  pk: 2
+  fields:
+    nombre: En Proveedor
+- model: app.estado
+  pk: 3
+  fields:
+    nombre: En stock cargado
+- model: app.estado
+  pk: 4
+  fields:
+    nombre: En stock vacío
+- model: app.estado
+  pk: 5
+  fields:
+    nombre: En devolución
+- model: app.estado
+  pk: 6
+  fields:
+    nombre: Dado de baja
