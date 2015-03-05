@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('fecha_inicio', models.DateField()),
-                ('fecha_fin', models.DateField()),
+                ('fecha_fin', models.DateField(default=False)),
                 ('recargado', models.BooleanField(default=False)),
                 ('estado', models.ForeignKey(to='app.Estado')),
             ],
