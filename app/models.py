@@ -46,7 +46,7 @@ class Toner(models.Model):
     modelo = models.CharField(max_length=200,null=False)
     identificador = models.CharField(max_length=200,null=False)
     proveedor = models.ForeignKey(Proveedor, null=True)
-    estados = models.ManyToManyField(Estado)
+    impresora = models.ForeignKey(Impresora, null=True)
     estados = models.ManyToManyField(Estado, through='EstadoToner')
     
     class Meta:
@@ -62,7 +62,8 @@ class EstadoToner(models.Model):
     toner = models.ForeignKey(Toner)
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
-
+    recargado = models.BooleanField(default=False)
+ 
     class Meta:
         db_table = 'estados_toners'
         verbose_name_plural = 'EstadosToners'

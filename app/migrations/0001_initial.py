@@ -28,6 +28,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('fecha_inicio', models.DateField()),
                 ('fecha_fin', models.DateField()),
+                ('recargado', models.BooleanField(default=False)),
                 ('estado', models.ForeignKey(to='app.Estado')),
             ],
             options={
@@ -71,6 +72,7 @@ class Migration(migrations.Migration):
                 ('modelo', models.CharField(max_length=200)),
                 ('identificador', models.CharField(max_length=200)),
                 ('estados', models.ManyToManyField(to='app.Estado', through='app.EstadoToner')),
+                ('impresora', models.ForeignKey(to='app.Impresora', null=True)),
                 ('proveedor', models.ForeignKey(to='app.Proveedor', null=True)),
             ],
             options={
