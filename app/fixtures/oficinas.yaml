@@ -1,0 +1,8 @@
+- model: app.oficina
+  pk: 1
+  fields:
+    nombre: Despacho
+- model: app.oficina
+  pk: 2
+  fields:
+    nombre: Diplomas

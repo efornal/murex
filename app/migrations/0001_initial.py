@@ -50,6 +50,18 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.CreateModel(
+            name='Oficina',
+            fields=[
+                ('id', models.AutoField(serialize=False, primary_key=True)),
+                ('nombre', models.CharField(max_length=200)),
+            ],
+            options={
+                'db_table': 'oficinas',
+                'verbose_name_plural': 'Oficinas',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
             name='Proveedor',
             fields=[
                 ('id', models.AutoField(serialize=False, primary_key=True)),
@@ -80,6 +92,12 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'Toners',
             },
             bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='impresora',
+            name='oficina',
+            field=models.ForeignKey(to='app.Oficina', null=True),
+            preserve_default=True,
         ),
         migrations.AddField(
             model_name='estadotoner',

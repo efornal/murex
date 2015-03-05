@@ -1,0 +1,10 @@
+- model: app.impresora
+  pk: 1
+  fields:
+    nombre: Hp 4645 Multifuncion Wifi
+    oficina: 1
+- model: app.impresora
+  pk: 2
+  fields:
+    nombre: Brother Hl-1110 / Hl-1112 Laser
+    oficina: 2
