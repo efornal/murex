@@ -11,9 +11,9 @@ class Proveedor(models.Model):
     class Meta:
         db_table = 'proveedores'
         verbose_name_plural = 'Preoveedores'
-        
-    def __str__(self):
-        return self.nombre
+
+    def __unicode__(self):
+        return "%s: %s = %s" % (self.nombre, self.attribute, self.value)
 
     
 class Oficina(models.Model):
@@ -24,8 +24,8 @@ class Oficina(models.Model):
         db_table = 'oficinas'
         verbose_name_plural = 'Oficinas'
         
-    def __str__(self):
-        return self.nombre
+    def __unicode__(self):
+        return "%s" % (self.nombre)
 
     
 class Impresora(models.Model):
@@ -38,8 +38,8 @@ class Impresora(models.Model):
         db_table = 'impresoras'
         verbose_name_plural = 'Impresoras'
         
-    def __str__(self):
-        return self.nombre
+    def __unicode__(self):
+        return "%s" % (self.nombre)
 
     
 class Estado(models.Model):
@@ -50,8 +50,9 @@ class Estado(models.Model):
         db_table = 'estados'
         verbose_name_plural = 'Estados'
         
-    def __str__(self):
-        return self.nombre
+    def __unicode__(self):
+        return "%s" % (self.nombre)
+
     
 class Toner(models.Model):
     id = models.AutoField(primary_key=True,null=False)
@@ -65,19 +66,21 @@ class Toner(models.Model):
     class Meta:
         db_table = 'toners'
         verbose_name_plural = 'Toners'
-        
-    def __str__(self):
-        return self.marca
+
+    def __unicode__(self):
+        return "%s" % (self.marca)
 
     
 class EstadoToner(models.Model):
     estado = models.ForeignKey(Estado)
     toner = models.ForeignKey(Toner)
     fecha_inicio = models.DateField()
-    fecha_fin = models.DateField()
-    recargado = models.BooleanField(default=False)
+    fecha_fin = models.DateField(default=False,null=False)
+    recargado = models.BooleanField(default=False,null=False)
  
     class Meta:
         db_table = 'estados_toners'
         verbose_name_plural = 'EstadosToners'
         
+    def __unicode__(self):
+        return "%s" % (self.toner.marca)
