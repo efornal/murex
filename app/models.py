@@ -67,7 +67,7 @@ class Toner(models.Model):
         verbose_name_plural = 'Toners'
         
     def __str__(self):
-        return self.nombre
+        return self.marca
 
     
 class EstadoToner(models.Model):
@@ -81,5 +81,3 @@ class EstadoToner(models.Model):
         db_table = 'estados_toners'
         verbose_name_plural = 'EstadosToners'
         
-    def __str__(self):
-        return self.nombre
