@@ -53,33 +53,35 @@ class Estado(models.Model):
         return "%s" % (self.nombre)
 
     
-class Toner(models.Model):
-    id = models.AutoField(primary_key=True,null=False)
-    marca = models.CharField(max_length=200,null=False)
-    modelo = models.CharField(max_length=200,null=False)
-    identificador = models.CharField(max_length=200,null=False)
-    proveedor = models.ForeignKey(Proveedor, null=True)
-    impresora = models.ForeignKey(Impresora, null=True)
-    estados = models.ManyToManyField(Estado, through='EstadoToner')
-    
-    class Meta:
-        db_table = 'toners'
-        verbose_name_plural = 'Toners'
-
-    def __unicode__(self):
-        return "%s" % (self.marca)
-
-    
-class EstadoToner(models.Model):
-    estado = models.ForeignKey(Estado)
-    toner = models.ForeignKey(Toner)
-    fecha_inicio = models.DateField(null=False)
-    fecha_fin = models.DateField(default=False,null=True)
-    recargado = models.BooleanField(default=False,null=False)
+# class EstadoToner(models.Model):
+#     estado = models.ForeignKey(Estado)
+#     fecha_inicio = models.DateField(null=False)
+#     fecha_fin = models.DateField(default=False,null=True)
+#     recargado = models.BooleanField(default=False,null=False)
+# #    toner = models.ForeignKey(Toner)
  
-    class Meta:
-        db_table = 'estados_toners'
-        verbose_name_plural = 'EstadosToners'
-        
-    def __unicode__(self):
-        return "%s" % (self.toner.marca)
+#     class Meta:
+#         db_table = 'estados_toners'
+#         verbose_name_plural = 'EstadosToners'
+
+#     def __unicode__(self):
+#         return "%s" % ('EstadoToner')
+
+
+# class Toner(models.Model):
+#     id = models.AutoField(primary_key=True,null=False)
+#     marca = models.CharField(max_length=200,null=False)
+#     modelo = models.CharField(max_length=200,null=False)
+#     identificador = models.CharField(max_length=200,null=False)
+#     proveedor = models.ForeignKey(Proveedor, null=True)
+#     impresora = models.ForeignKey(Impresora, null=True)
+#     estados = models.ManyToManyField(Estado, through='EstadoToner')
+    
+#     class Meta:
+#         db_table = 'toners'
+#         verbose_name_plural = 'Toners'
+
+#     def __unicode__(self):
+#         return "%s" % (self.marca)
+
+ 
