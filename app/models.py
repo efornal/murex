@@ -4,8 +4,8 @@ from django.db import models
 class Proveedor(models.Model):
     id = models.AutoField(primary_key=True,null=False)
     nombre = models.CharField(max_length=200,null=False)
-    direccion = models.CharField(max_length=200,null=False)
-    telefono = models.CharField(max_length=200,null=False)
+    direccion = models.CharField(max_length=200,null=True)
+    telefono = models.CharField(max_length=200,null=True)
     descripcion = models.TextField(null=True)
     
     class Meta:
@@ -13,7 +13,7 @@ class Proveedor(models.Model):
         verbose_name_plural = 'Preoveedores'
 
     def __unicode__(self):
-        return "%s: %s = %s" % (self.nombre, self.attribute, self.value)
+        return "%s" % (self.nombre)
 
     
 class Oficina(models.Model):
@@ -32,7 +32,6 @@ class Impresora(models.Model):
     id = models.AutoField(primary_key=True,null=False)
     nombre = models.CharField(max_length=200,null=False)
     oficina = models.ForeignKey(Oficina, null=True)
-    
     
     class Meta:
         db_table = 'impresoras'
@@ -74,8 +73,8 @@ class Toner(models.Model):
 class EstadoToner(models.Model):
     estado = models.ForeignKey(Estado)
     toner = models.ForeignKey(Toner)
-    fecha_inicio = models.DateField()
-    fecha_fin = models.DateField(default=False,null=False)
+    fecha_inicio = models.DateField(null=False)
+    fecha_fin = models.DateField(default=False,null=True)
     recargado = models.BooleanField(default=False,null=False)
  
     class Meta:

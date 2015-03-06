@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('fecha_inicio', models.DateField()),
-                ('fecha_fin', models.DateField(default=False)),
+                ('fecha_fin', models.DateField(default=False, null=True)),
                 ('recargado', models.BooleanField(default=False)),
                 ('estado', models.ForeignKey(to='app.Estado')),
             ],
@@ -66,8 +66,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(serialize=False, primary_key=True)),
                 ('nombre', models.CharField(max_length=200)),
-                ('direccion', models.CharField(max_length=200)),
-                ('telefono', models.CharField(max_length=200)),
+                ('direccion', models.CharField(max_length=200, null=True)),
+                ('telefono', models.CharField(max_length=200, null=True)),
                 ('descripcion', models.TextField(null=True)),
             ],
             options={
