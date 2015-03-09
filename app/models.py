@@ -10,7 +10,7 @@ class Proveedor(models.Model):
     
     class Meta:
         db_table = 'proveedores'
-        verbose_name_plural = 'Preoveedores'
+        verbose_name_plural = 'Proveedores'
 
     def __unicode__(self):
         return "%s" % (self.nombre)
