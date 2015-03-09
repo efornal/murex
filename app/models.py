@@ -4,9 +4,9 @@ from django.db import models
 class Proveedor(models.Model):
     id = models.AutoField(primary_key=True,null=False)
     nombre = models.CharField(max_length=200,null=False)
-    direccion = models.CharField(max_length=200,null=True)
-    telefono = models.CharField(max_length=200,null=True)
-    descripcion = models.TextField(null=True)
+    direccion = models.CharField(max_length=200,null=True, blank=True)
+    telefono = models.CharField(max_length=200,null=True, blank=True)
+    descripcion = models.TextField(null=True, blank=True)
     
     class Meta:
         db_table = 'proveedores'
@@ -31,7 +31,7 @@ class Oficina(models.Model):
 class Impresora(models.Model):
     id = models.AutoField(primary_key=True,null=False)
     nombre = models.CharField(max_length=200,null=False)
-    oficina = models.ForeignKey(Oficina, null=True)
+    oficina = models.ForeignKey(Oficina, null=True, blank=True)
     
     class Meta:
         db_table = 'impresoras'
@@ -58,8 +58,8 @@ class Toner(models.Model):
     marca = models.CharField(max_length=200,null=False)
     modelo = models.CharField(max_length=200,null=False)
     identificador = models.CharField(max_length=200,null=False)
-    proveedor = models.ForeignKey(Proveedor, null=True)
-    impresora = models.ForeignKey(Impresora, null=True)
+    proveedor = models.ForeignKey(Proveedor, null=True, blank=True)
+    impresora = models.ForeignKey(Impresora, null=True, blank=True)
     estados = models.ManyToManyField(Estado, through='EstadoToner')
     
     class Meta:
@@ -67,14 +67,14 @@ class Toner(models.Model):
         verbose_name_plural = 'Toners'
 
     def __unicode__(self):
-        return "%s" % (self.marca)
+        return "%s" % (self.identificador)
 
      
 class EstadoToner(models.Model):
     estado = models.ForeignKey(Estado)
     toner  = models.ForeignKey(Toner)
     fecha_inicio = models.DateField(null=False)
-    fecha_fin = models.DateField(default=False,null=True)
+    fecha_fin = models.DateField(null=True, blank=True)
     recargado = models.BooleanField(default=False,null=False)
  
     class Meta:
@@ -82,5 +82,5 @@ class EstadoToner(models.Model):
         verbose_name_plural = 'EstadosToners'
 
     def __unicode__(self):
-        return "%s" % ('EstadoToner')
+        return "%s" % (self.toner.identificador)
 
