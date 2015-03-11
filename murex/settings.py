@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
+    'bootstrap_themes',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -73,6 +74,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'es-AR'
 
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -86,3 +88,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    '/static/',
+)
+# If the user isn't logged in, redirect to
+#LOGIN_URL = '/login/'
+TEMPLATE_DIRS = (
+ os.path.join(BASE_DIR, 'templates'),
+)
+
+LOGIN_REDIRECT_URL = '/'
+
+PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
+SITE_ID = 1
