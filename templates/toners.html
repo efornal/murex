@@ -28,6 +28,21 @@
      
 </table>
 
+<div class="pagination">
+    <span class="step-links">
+        {% if toners.has_previous %}
+            <a href="?page={{ toners.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ toners.number }} of {{ toners.paginator.num_pages }}.
+        </span>
+
+        {% if toners.has_next %}
+            <a href="?page={{ toners.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
 {% endblock %}
 
 

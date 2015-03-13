@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from app.models import Toner
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
 def index(request):
@@ -15,7 +15,18 @@ def index(request):
 
 @login_required
 def toners(request):
-    toners = Toner.objects.order_by('identificador')
+    toners_list = Toner.objects.order_by('identificador')
+    paginator = Paginator(toners_list, 3)
+    page = request.GET.get('page')
+    try:
+        toners = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        toners = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        toners = paginator.page(paginator.num_pages)
+
     context = {'toners': toners}
     return render(request, 'toners.html', context)
 
