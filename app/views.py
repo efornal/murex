@@ -30,6 +30,24 @@ def toners(request):
     context = {'toners': toners}
     return render(request, 'toners.html', context)
 
+@login_required
+def search(request):
+    text_search = request.POST['search_field']
+    toners_list = Toner.objects.filter(identificador=text_search).order_by('identificador')
+    paginator = Paginator(toners_list, 3)
+    page = request.GET.get('page')
+    try:
+        toners = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        toners = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        toners = paginator.page(paginator.num_pages)
+
+    context = {'toners': toners}
+    return render(request, 'toners.html', context)
+
 
 @login_required
 def logout_view(request):

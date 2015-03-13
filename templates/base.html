@@ -25,17 +25,32 @@
           <div id="menubar">
             <ul id="menu">
               <li><a href="#">Inicio</a></li>
-              <li class="selected"><a href="examples.html">Toners</a></li>
+              <li class="selected"><a href="{% url 'toners' %}">Toners</a></li>
             </ul>
           </div>
           {% endif %}
         </div>
         <div id="content_header"></div>
         <div id="site_content">
+          <div class="sidebar">
+            <h3>Busqueda</h3>
+            <form method="post" action="{% url 'search' %}" id="search_form">
+              {% csrf_token %}
+              <p>
+                <input class="search" type="text" name="search_field"
+                       value="" placeholder="Identificador" />
+                <input name="buscar" type="image"
+                       style="border: 0; margin: 0 0 -9px 5px;"
+                       src="{{ STATIC_URL }}style/search.png" alt="Buscar" title="Buscar" />
+              </p>
+            </form>
+          </div>
+
           <div id="content">
             {% block content %}
             {% endblock %}
           </div>
+          
         </div>
         <div id="content_footer"></div>
         <div id="footer">
