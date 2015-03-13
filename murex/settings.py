@@ -37,7 +37,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'bootstrap_themes',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -98,7 +97,7 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
 
-LOGIN_REDIRECT_URL = '/app/login/'
+#LOGIN_REDIRECT_URL = '/app/login/'
 LOGIN_URL='/app/login/'
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
-SITE_ID = 1
+#SITE_ID = 1
