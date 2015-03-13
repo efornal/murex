@@ -1,45 +1,49 @@
 <!DOCTYPE HTML>
 <html>
 
-<head>
-  <title>Murex</title>
-  <link rel="stylesheet" href="{{ STATIC_URL }}style/style.css">
-</head>
+  <head>
+    <title>Murex</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}style/style.css">
+    </head>
 
-<body>
-  <div id="main">
-    <div id="header">
-      <div id="logo">
-        <div id="logo_text">
-          <h1><a href="index.html">Murex</a></h1>
-          <h2>Administrador de Toners</h2><br><br>
-          <h2>Usuario:
-          <span class="username"> efornal</span> &nbsp;&nbsp;&nbsp;&nbsp;
-          <span class="username"> <a href="{% url 'logout' %}">Salir</a></span>
-          </h2>
+    <body>
+      <div id="main">
+        <div id="header">
+          <div id="logo">
+            <div id="logo_text">
+              <h1><a href="index.html">Murex</a></h1>
+              <h2>Administrador de Toners</h2><br><br>
+              {% if user.is_authenticated %}
+              <h2>Usuario: <span class="username"> {{ user.username }} </span>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="username"><a href="{% url 'logout' %}">Salir</a></span>
+              </h2>
+              {% endif %}
+            </div>
+          </div>
+          {% if user.is_authenticated %}
+          <div id="menubar">
+            <ul id="menu">
+              <li><a href="#">Inicio</a></li>
+              <li class="selected"><a href="examples.html">Toners</a></li>
+            </ul>
+          </div>
+          {% endif %}
+        </div>
+        <div id="content_header"></div>
+        <div id="site_content">
+          <div id="content">
+            {% block content %}
+            {% endblock %}
+          </div>
+        </div>
+        <div id="content_footer"></div>
+        <div id="footer">
+          <a href="https://github.com/efornal/murex" target="_blank">Murex</a> |
+          <a href="http://validator.w3.org/check?uri=referer">HTML5</a> |
+          <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> |
+          <a href="http://www.html5webtemplates.co.uk">Website templates</a>
         </div>
       </div>
-      <div id="menubar">
-        <ul id="menu">
-          <li><a href="#">Inicio</a></li>
-          <li class="selected"><a href="examples.html">Toners</a></li>
-        </ul>
-      </div>
-    </div>
-    <div id="content_header"></div>
-    <div id="site_content">
-      <div id="content">
-        {% block content %}
-        {% endblock %}
-      </div>
-    </div>
-    <div id="content_footer"></div>
-    <div id="footer">
-      <a href="https://github.com/efornal/murex" target="_blank">Murex</a> |
-      <a href="http://validator.w3.org/check?uri=referer">HTML5</a> |
-      <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> |
-      <a href="http://www.html5webtemplates.co.uk">Website templates</a>
-    </div>
-  </div>
-</body>
-</html>
+    </body>
+  </html>
