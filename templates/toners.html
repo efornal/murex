@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+<h2>Toners</h2>
+
+<table style="width:100%; border-spacing:0;">
+  {% if toners %}
+    <tr>
+      <th>Identificador</th>
+      <th>Marca</th>
+      <th>Modelo</th>
+    </tr>
+    {% for toner in toners %}
+    <tr>
+      <td>{{ toner.identificador }}</td>
+      <td>{{ toner.marca }}</td>
+      <td>{{ toner.modelo }}</td>
+    </tr>
+    {% endfor %}
+  {% else %}
+     <p>No se encontraron resultados</p>
+ {% endif %}
+     
+</table>
+
+{% endblock %}
+
+

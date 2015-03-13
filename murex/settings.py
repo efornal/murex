@@ -95,10 +95,10 @@ STATICFILES_DIRS = (
 # If the user isn't logged in, redirect to
 #LOGIN_URL = '/login/'
 TEMPLATE_DIRS = (
- os.path.join(BASE_DIR, 'templates'),
+    os.path.join(BASE_DIR, 'templates'),
 )
 
-LOGIN_REDIRECT_URL = '/'
-
+LOGIN_REDIRECT_URL = '/app/login/'
+LOGIN_URL='/app/login/'
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 SITE_ID = 1

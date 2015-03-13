@@ -316,3 +316,8 @@ table tr td
 { background: #F4F4EE;
   color: #47433F;
   border-top: 1px solid #FFF;}
+
+h2.username
+{ font-size: 150%;
+  padding: 40px 0 0 0 !important;
+  color: #A8AA94;}
