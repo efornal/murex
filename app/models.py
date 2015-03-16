@@ -82,8 +82,8 @@ def estado_inicial(sender, instance, **kwargs):
 class EstadoToner(models.Model):
     estado = models.ForeignKey(Estado)
     toner  = models.ForeignKey(Toner)
-    fecha_inicio = models.DateField(null=False)
-    fecha_fin = models.DateField(null=True, blank=True)
+    fecha_inicio = models.DateTimeField(null=False)
+    fecha_fin = models.DateTimeField(null=True, blank=True)
     recargado = models.BooleanField(default=False,null=False)
  
     class Meta:
