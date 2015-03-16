@@ -74,8 +74,9 @@ class Toner(models.Model):
 
 @receiver(post_save, sender=Toner)
 def estado_inicial(sender, instance, **kwargs):
-    estado = EstadoToner(toner_id=instance.id, estado_id=3, fecha_inicio=datetime.now())
-    estado.save()
+    if kwargs['created']:
+        estado = EstadoToner(toner_id=instance.id, estado_id=3, fecha_inicio=datetime.now())
+        estado.save()
 
     
      
