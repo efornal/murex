@@ -1,5 +1,8 @@
 from django.db import models
-
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from datetime import datetime
+import django.dispatch
 
 class Proveedor(models.Model):
     id = models.AutoField(primary_key=True,null=False)
@@ -69,6 +72,12 @@ class Toner(models.Model):
     def __unicode__(self):
         return "%s" % (self.identificador)
 
+@receiver(post_save, sender=Toner)
+def estado_inicial(sender, instance, **kwargs):
+    estado = EstadoToner(toner_id=instance.id, estado_id=3, fecha_inicio=datetime.now())
+    estado.save()
+
+    
      
 class EstadoToner(models.Model):
     estado = models.ForeignKey(Estado)
@@ -83,4 +92,5 @@ class EstadoToner(models.Model):
 
     def __unicode__(self):
         return "%s" % (self.toner.identificador)
+
 
