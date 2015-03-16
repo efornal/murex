@@ -3,7 +3,9 @@
 {% block content %}
 
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+  {% for errors in form.errors %}
+  <p>{{ errors }}</p>
+  {% endfor %}
 {% endif %}
 
 <h2>Toners</h2>
@@ -17,7 +19,7 @@
     </tr>
     {% for toner in toners %}
     <tr>
-      <td>{{ toner.identificador }}</td>
+      <td><a href="{% url 'toner' toner.id %}">{{ toner.identificador }}</a></td>
       <td>{{ toner.marca }}</td>
       <td>{{ toner.modelo }}</td>
     </tr>

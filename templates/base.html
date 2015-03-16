@@ -14,13 +14,14 @@
               <h1><a href="index.html">Murex</a></h1>
               <h2>Administrador de Toners</h2><br><br>
               {% if user.is_authenticated %}
-              <h2>Usuario: <span class="username"> {{ user.username }} </span>
-              &nbsp;&nbsp;&nbsp;&nbsp;
-              <span class="username"><a href="{% url 'logout' %}">Salir</a></span>
-              </h2>
+                <h2>Usuario: <span class="username"> {{ user.username }} </span>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <span class="username"><a href="{% url 'logout' %}">Salir</a></span>
+                </h2>
               {% endif %}
             </div>
           </div>
+
           {% if user.is_authenticated %}
           <div id="menubar">
             <ul id="menu">
@@ -29,9 +30,11 @@
             </ul>
           </div>
           {% endif %}
+          
         </div>
         <div id="content_header"></div>
         <div id="site_content">
+          {% if user.is_authenticated %}
           <div class="sidebar">
             <h3>Busqueda</h3>
             <form method="post" action="{% url 'search' %}" id="search_form">
@@ -41,11 +44,13 @@
                        value="" placeholder="Identificador" />
                 <input name="buscar" type="image"
                        style="border: 0; margin: 0 0 -9px 5px;"
-                       src="{{ STATIC_URL }}style/search.png" alt="Buscar" title="Buscar" />
+                       src="{{ STATIC_URL }}style/search.png"
+                       alt="Buscar" title="Buscar" />
               </p>
             </form>
           </div>
-
+          {% endif %}
+          
           <div id="content">
             {% block content %}
             {% endblock %}

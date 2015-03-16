@@ -55,6 +55,13 @@ def logout_view(request):
     return redirect('toners')
 
 
+@login_required
+def toner(request, toner_id):
+    toner = Toner.objects.get(id=toner_id)
+    return render(request, 'toner.html', {'toner': toner})
+
+
+
 def login_view(request):
     if request.POST.get('username') and request.POST.get('password'):
         username = request.POST['username']
