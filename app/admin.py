@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app.models import Proveedor, Oficina, Impresora, Estado, Toner, EstadoToner
+from app.models import Proveedor, Oficina, Impresora, Estado, Toner
 
 class ProveedorAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'direccion', 'telefono')
@@ -15,4 +15,4 @@ admin.site.register(Oficina)
 admin.site.register(Impresora)
 admin.site.register(Estado)
 admin.site.register(Toner, TonerAdmin)
-admin.site.register(EstadoToner)
+
