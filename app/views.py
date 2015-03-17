@@ -5,7 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
-from app.models import Toner
+from app.models import Toner, Estado
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
@@ -58,7 +58,11 @@ def logout_view(request):
 @login_required
 def toner(request, toner_id):
     toner = Toner.objects.get(id=toner_id)
-    return render(request, 'toner.html', {'toner': toner})
+    estados = Estado.objects.order_by('nombre')
+    estado_actual = toner.estado_actual()
+    return render(request, 'toner.html', {'toner': toner,
+                                          'estados': estados,
+                                          'estado_actual': estado_actual})
 
 
 

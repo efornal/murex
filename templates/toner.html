@@ -27,8 +27,26 @@
       <input class="contact" readonly="true" type="text" name="modelo" value="{{ toner.proveedor.nombre }}" />
     </p>
 
+    <p><span>Estado</span>
+    <select id="id" name="estado_id">
+      <option value='0'>-- No asignado --</option>
+      {% for estado in estados %}
+        <option value="{{estado.id}}"
+        {% if estado.id == estado_actual.estado_id %}selected="selected"{% endif %}>
+        {{estado.nombre}}
+        </option>
+      {% endfor %}
+    </select>
+    </p>
+
+    <p>
+      <span>Recargado?</span>
+      <input class="checkbox" name="name" value="" type="checkbox"
+             {% if estado_actual.fue_recargado %}checked="True"{% endif %} >
+    </p>
+            
     <p style="padding-top: 15px"><span>&nbsp;</span>
-      <input class="submit" type="submit" name="contact_submitted" value="submit" />
+      <input class="submit" type="submit" name="contact_submitted" value="Modificar" />
     </p>
   </div>
 </form>

@@ -72,6 +72,10 @@ class Toner(models.Model):
     def __unicode__(self):
         return "%s" % (self.identificador)
 
+    def estado_actual(self):
+      return EstadoToner.objects.filter(toner_id=self.id).order_by('-fecha_inicio')[0]
+
+      
 @receiver(post_save, sender=Toner)
 def estado_inicial(sender, instance, **kwargs):
     if kwargs['created']:
@@ -94,4 +98,6 @@ class EstadoToner(models.Model):
     def __unicode__(self):
         return "%s" % (self.toner.identificador)
 
+    def fue_recargado(self):
+        return self.recargado
 
