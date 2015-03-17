@@ -57,14 +57,20 @@ def logout_view(request):
 
 @login_required
 def toner(request, toner_id):
-    toner = Toner.objects.get(id=toner_id)
-    estados = Estado.objects.order_by('nombre')
-    estado_actual = toner.estado_actual()
-    return render(request, 'toner.html', {'toner': toner,
-                                          'estados': estados,
-                                          'estado_actual': estado_actual})
-
-
+    if request.method == 'GET':
+        toner = Toner.objects.get(id=toner_id)
+        estados = Estado.objects.order_by('nombre')
+        estado_actual = toner.estado_actual()
+        return render(request, 'toner.html', {'toner': toner,
+                                              'estados': estados,
+                                              'estado_actual': estado_actual})
+    elif request.method == 'POST':
+        toner = Toner.objects.get(id=toner_id)
+        nuevo_estado_id = request.POST['estado_id']
+        toner.definir_estado(nuevo_estado_id)
+        return redirect('toners')
+    raise Http404
+      
 
 def login_view(request):
     if request.POST.get('username') and request.POST.get('password'):

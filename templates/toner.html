@@ -10,6 +10,8 @@
 
 <h1>Toner </h1>
 <form action="" method="post">
+  {% csrf_token %}
+  <input type='hidden' name="id" value="{{ toner.id }}" />
   <div class="form_settings">
     <p><span>Identificador</span>
     <input class="contact" readonly="true" type="text" name="identificador"
