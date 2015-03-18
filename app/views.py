@@ -53,7 +53,7 @@ def logout_view(request):
 
 
 @login_required
-#@transaction.commit_on_success
+@transaction.commit_on_success
 def toner(request, toner_id):
     if request.method == 'GET':
         toner = Toner.objects.get(id=toner_id)
