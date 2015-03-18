@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from app.models import Toner, Estado
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db import transaction
 
 @login_required
 def index(request):
@@ -56,6 +57,7 @@ def logout_view(request):
 
 
 @login_required
+#@transaction.commit_on_success
 def toner(request, toner_id):
     if request.method == 'GET':
         toner = Toner.objects.get(id=toner_id)
