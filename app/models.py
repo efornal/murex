@@ -75,13 +75,16 @@ class Toner(models.Model):
     def estado_actual(self):
       return EstadoToner.objects.filter(toner_id=self.id).order_by('-fecha_inicio')[0]
 
-    def definir_estado(self, nuevo_estado_id):
+    def definir_estado(self, nuevo_estado_id, fue_recargado=False):
         estado = self.estado_actual()
-        estado_nuevo = EstadoToner(toner_id=self.id, estado_id=nuevo_estado_id, fecha_inicio=datetime.now())
-        estado_nuevo.save()
         estado.fecha_fin = datetime.now()
-        estado.save()
-       
+        estado_nuevo = EstadoToner(toner_id = self.id,
+                                   estado_id = nuevo_estado_id,
+                                   fecha_inicio = datetime.now(),
+                                   recargado = fue_recargado)
+        estado_nuevo.save()
+        estado.save(update_fields=['fecha_fin'])
+        
 @receiver(post_save, sender=Toner)
 def estado_inicial(sender, instance, **kwargs):
     if kwargs['created']:
