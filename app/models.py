@@ -61,6 +61,7 @@ class Toner(models.Model):
     marca = models.CharField(max_length=200,null=False)
     modelo = models.CharField(max_length=200,null=False)
     identificador = models.CharField(max_length=200,null=False)
+    descripcion = models.TextField(null=True, blank=True)
     proveedor = models.ForeignKey(Proveedor, null=True, blank=True)
     impresora = models.ForeignKey(Impresora, null=True, blank=True)
     estados = models.ManyToManyField(Estado, through='EstadoToner')
