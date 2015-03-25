@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(serialize=False, primary_key=True)),
                 ('nombre', models.CharField(max_length=200)),
-                ('oficina', models.ForeignKey(to='app.Oficina', null=True)),
+                ('oficina', models.ForeignKey(blank=True, to='app.Oficina', null=True)),
             ],
             options={
                 'db_table': 'impresoras',

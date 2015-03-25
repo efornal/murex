@@ -15,13 +15,13 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(serialize=False, primary_key=True)),
                 ('nombre', models.CharField(max_length=200)),
-                ('direccion', models.CharField(max_length=200, null=True)),
-                ('telefono', models.CharField(max_length=200, null=True)),
-                ('descripcion', models.TextField(null=True)),
+                ('direccion', models.CharField(max_length=200, null=True, blank=True)),
+                ('telefono', models.CharField(max_length=200, null=True, blank=True)),
+                ('descripcion', models.TextField(null=True, blank=True)),
             ],
             options={
                 'db_table': 'proveedores',
-                'verbose_name_plural': 'Preoveedores',
+                'verbose_name_plural': 'Proveedores',
             },
             bases=(models.Model,),
         ),
