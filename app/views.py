@@ -5,7 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
-from app.models import Toner, Estado
+from app.models import Toner, Estado, EstadoToner
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import transaction
 
@@ -17,7 +17,7 @@ def index(request):
 @login_required
 def toners(request):
     toners_list = Toner.objects.order_by('identificador')
-    paginator = Paginator(toners_list, 3)
+    paginator = Paginator(toners_list, 10)
     page = request.GET.get('page')
     try:
         toners = paginator.page(page)
@@ -28,6 +28,25 @@ def toners(request):
 
     context = {'toners': toners}
     return render(request, 'toners.html', context)
+
+@login_required
+def toner_detail(request,toner_id):
+    toner = Toner.objects.get(id=toner_id)
+    status_list = EstadoToner.objects.filter(toner_id=toner_id).order_by('-fecha_inicio')
+    paginator = Paginator(status_list, 10)
+    page = request.GET.get('page')
+
+    try:
+        status = paginator.page(page)
+    except PageNotAnInteger:
+        status = paginator.page(1)
+    except EmptyPage:
+        status = paginator.page(paginator.num_pages)
+
+    context = {'status': status, 'toner_name': toner.identificador}
+
+    return render(request, 'toner_detail.html', context)
+
 
 @login_required
 def search(request):

@@ -9,5 +9,6 @@ urlpatterns = patterns('app.views',
 #    url('^toner/','toner', name='toner'),
     url(r'^toner/(\d+)/$', 'toner', name='toner'),
     url('^search/','search', name='search'),
+    url(r'^toner/(\d+)/detail/$', 'toner_detail', name='toner_detail'),
     url(r'^$', 'index', name='index'),
 )

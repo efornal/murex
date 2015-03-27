@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+  {% for errors in form.errors %}
+  <p>{{ errors }}</p>
+  {% endfor %}
+{% endif %}
+
+<h2>Detalle de Estados ({{ toner_name }})</h2>
+
+<table style="width:100%; border-spacing:0;">
+  {% if status %}
+    <tr>
+      <th>Estado</th>
+      <th>Fecha inicio</th>
+      <th>Fecha fin</th>
+      <th>Recargado?</th>
+    </tr>
+    {% for state in status %}
+    <tr>
+      <td>{{ state.estado.nombre }}</td>
+      <td>{{ state.fecha_inicio }}</td>
+      <td>{{ state.fecha_fin }}</td>
+      <td>{{ state.recargado }}</td>
+    </tr>
+    {% endfor %}
+  {% else %}
+     <p>No se encontraron resultados</p>
+ {% endif %}
+     
+</table>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if status.has_previous %}
+            <a href="?page={{ status.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ status.number }} of {{ status.paginator.num_pages }}.
+        </span>
+
+        {% if status.has_next %}
+            <a href="?page={{ status.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
+
+

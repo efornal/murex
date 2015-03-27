@@ -17,6 +17,7 @@
       <th>Marca</th>
       <th>Modelo</th>
       <th>Estado</th>
+      <th></th>
     </tr>
     {% for toner in toners %}
     <tr>
@@ -24,6 +25,9 @@
       <td>{{ toner.marca }}</td>
       <td>{{ toner.modelo }}</td>
       <td>{{ toner.ultimo_estado.nombre }}</td>
+      <td>
+        <a href="{% url 'toner_detail' toner.id %}"><img src="/static/style/toner_detail.png"></a>
+      </td>
     </tr>
     {% endfor %}
   {% else %}
