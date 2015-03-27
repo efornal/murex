@@ -34,6 +34,7 @@
            value="{{ toner.proveedor.nombre }}" />
     </p>
 
+    
     <p><span>Estado</span>
     <select id="id" name="estado_id">
       <option value='0'>-- No asignado --</option>
@@ -52,9 +53,15 @@
              {% if estado_actual.fue_recargado %}checked="True"{% endif %} >
     </p>
             
+    <p>
+      <span>Descripción</span>
+      <textarea rows="5" cols="50" name="descripcion" readonly="true" >{{ toner.descripcion }}</textarea>
+    </p>
+
     <p style="padding-top: 15px"><span>&nbsp;</span>
       <input class="submit" type="submit" name="contact_submitted" value="Modificar" />
     </p>
+
   </div>
 </form>
 
