@@ -16,12 +16,14 @@
       <th>Identificador</th>
       <th>Marca</th>
       <th>Modelo</th>
+      <th>Estado</th>
     </tr>
     {% for toner in toners %}
     <tr>
       <td><a href="{% url 'toner' toner.id %}">{{ toner.identificador }}</a></td>
       <td>{{ toner.marca }}</td>
       <td>{{ toner.modelo }}</td>
+      <td>{{ toner.ultimo_estado.nombre }}</td>
     </tr>
     {% endfor %}
   {% else %}

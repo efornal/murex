@@ -74,7 +74,11 @@ class Toner(models.Model):
         return "%s" % (self.identificador)
 
     def estado_actual(self):
-      return EstadoToner.objects.filter(toner_id=self.id).order_by('-fecha_inicio')[0]
+        return EstadoToner.objects.filter(toner_id=self.id).order_by('-fecha_inicio')[0]
+
+    def ultimo_estado(self):
+        estado_actual = EstadoToner.objects.filter(toner_id=self.id).order_by('-fecha_inicio')[0]
+        return Estado.objects.get(id=estado_actual.estado_id)
 
     def definir_estado(self, nuevo_estado_id, fue_recargado=False):
         estado = self.estado_actual()
