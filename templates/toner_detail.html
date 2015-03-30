@@ -21,9 +21,9 @@
     {% for state in status %}
     <tr>
       <td>{{ state.estado.nombre }}</td>
-      <td>{{ state.fecha_inicio }}</td>
-      <td>{{ state.fecha_fin }}</td>
-      <td>{{ state.recargado }}</td>
+      <td>{{ state.fecha_inicio | date:'Y-m-d H:i' }}</td>
+      <td>{{ state.fecha_fin | date:'Y-m-d H:i' }}</td>
+      <td>{{ state.recargado | yesno:"Si,No" }}</td>
     </tr>
     {% endfor %}
   {% else %}
