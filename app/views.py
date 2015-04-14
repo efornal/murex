@@ -43,7 +43,8 @@ def toner_detail(request,toner_id):
     except EmptyPage:
         status = paginator.page(paginator.num_pages)
 
-    context = {'status': status, 'toner_name': toner.identificador}
+    first = status[0]
+    context = {'status': status, 'toner_name': toner.identificador, 'first': first}
 
     return render(request, 'toner_detail.html', context)
 

@@ -8,45 +8,68 @@
   {% endfor %}
 {% endif %}
 
-<h2>Detalle de Estados ({{ toner_name }})</h2>
+<div class="bs-docs-section">
 
-<table style="width:100%; border-spacing:0;">
-  {% if status %}
-    <tr>
-      <th>Estado</th>
-      <th>Fecha inicio</th>
-      <th>Fecha fin</th>
-      <th>Recargado?</th>
-    </tr>
-    {% for state in status %}
-    <tr>
-      <td>{{ state.estado.nombre }}</td>
-      <td>{{ state.fecha_inicio | date:'d-m-Y H:i' }}</td>
-      <td>{{ state.fecha_fin | date:'d-m-Y H:i' }}</td>
-      <td>{{ state.recargado | yesno:"Si,No" }}</td>
-    </tr>
-    {% endfor %}
-  {% else %}
-     <p>No se encontraron resultados</p>
- {% endif %}
-     
-</table>
+  <div class="row">
+    <div class="col-lg-12">
+       <div class="page-header">
+         <h1 id="tables">Detalle de estados para '{{ toner_name }}'</h1>
+       </div>
+       <div class="bs-component">
 
-<div class="pagination">
-    <span class="step-links">
-        {% if status.has_previous %}
-            <a href="?page={{ status.previous_page_number }}">previous</a>
+        {% if status %}
+        <table class="table table-striped table-hover ">
+          <thead>
+            <tr>
+              <th>Estado</th>
+              <th>Fecha inicio</th>
+              <th>Fecha fin</th>
+              <th>Recargado?</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for state in status %}
+            <tr {% if first.id = state.id %} {{"class='active'"}} {%endif%}>
+              <td>{{ state.estado.nombre }}</td>
+              <td>{{ state.fecha_inicio | date:'d-m-Y H:i' }}</td>
+              <td>{{ state.fecha_fin | date:'d-m-Y H:i' }}</td>
+              <td>{{ state.recargado | yesno:"Si,No" }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+          <p>No se encontraron resultados</p>
         {% endif %}
+        
+      </div>
+    </div>
+  </div>
 
-        <span class="current">
-            Page {{ status.number }} of {{ status.paginator.num_pages }}.
-        </span>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="bs-component">
+        <ul class="pager">
+          {% if toners.has_previous %}
+            <li><a href="?page={{ toners.previous_page_number }}">anterior</a></li>
+          {% endif %}
+          {% if toners.paginator.num_pages > 1 %}
+            <li>
+              &nbsp; página {{ toners.number }} de {{ toners.paginator.num_pages }} &nbsp;
+            </li>
+          {% endif %}
+          {% if toners.has_next %}
+            <li><a href="?page={{ toners.next_page_number }}">siguiente</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4"></div>
+  </div>
 
-        {% if status.has_next %}
-            <a href="?page={{ status.next_page_number }}">next</a>
-        {% endif %}
-    </span>
+  
 </div>
+
 {% endblock %}
 
 

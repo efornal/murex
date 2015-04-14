@@ -6,19 +6,40 @@
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
 
-
-<h2>Login</h2>
-<form action="{% url 'login' %}" method="post">
-{% csrf_token %}
-  <div class="form_settings">
-    <p><span>Usuario</span>
-    <input type="text" name="username" value="" /></p>
-    <p><span>Contraseña</span>
-    <input type="password" name="password" value="" /></p>
-    <p style="padding-top: 15px"><span>&nbsp;</span>
-    <input class="submit" type="submit" name="name" value="Iniciar sesión" /></p>
+<div class="bs-docs-section">
+  <br>
+  <div class="row" style="width:50%;">
+    <div class="col-lg-6">
+      <div class="well bs-component">
+        <form class="form-horizontal" action="{% url 'login' %}" method="post">
+          {% csrf_token %}
+          <fieldset>
+            <legend>Login</legend>
+            <div class="form-group">
+              <label for="inputEmail" class="col-lg-2 control-label">Usuario</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputEmail"
+                       name="username" placeholder="Usuario" autofocus>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword" class="col-lg-2 control-label">Contraseña</label>
+              <div class="col-lg-10">
+                <input type="password" class="form-control" id="inputPassword"
+                       name="password" placeholder="Contraseña">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
   </div>
-</form>
+</div>
+
 {% endblock %}
-
-
+          
