@@ -25,45 +25,18 @@
           <input type='hidden' name="id" value="{{ toner.id }}" />
           <fieldset>
             <legend>{{ toner.identificador }}</legend>
+
             <div class="form-group">
-              <label for="identificador" class="col-lg-2 control-label">Identificador</label>
-              <div class="col-lg-10">
+              <label class="col-sm-2 control-label" for="textinput">Identificador</label>
+              <div class="col-sm-4">
                 <input class="form-control" readonly="true" type="text" name="identificador"
                        id="identificador" value="{{ toner.identificador }}"/>
               </div>
             </div>
-            <div class="form-group">
-              <label for="marca" class="col-lg-2 control-label">Marca</label>
-              <div class="col-lg-10">
-                <input class="form-control" readonly="true" type="text" name="marca"
-                       id="marca" value="{{ toner.marca }}" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="modelo" class="col-lg-2 control-label">Modelo</label>
-              <div class="col-lg-10">
-                <input class="form-control" readonly="true" type="text" name="modelo"
-                       id="modelo" value="{{ toner.marca }}" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="impresora" class="col-lg-2 control-label">Impresora</label>
-              <div class="col-lg-10">
-                <input class="form-control" readonly="true" type="text" name="impresora"
-                       id="impresora" value="{{ toner.impresora.nombre }}" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="proveedor" class="col-lg-2 control-label">Proveedor</label>
-              <div class="col-lg-10">
-                <input class="form-control" readonly="true" type="text" name="proveedor"
-                       id="proveedor" value="{{ toner.proveedor.nombre }}" />
-              </div>
-            </div>
 
             <div class="form-group">
-              <label for="select" class="col-lg-2 control-label">Estado</label>
-              <div class="col-lg-10">
+              <label for="select" class="col-sm-2 control-label">Estado</label>
+              <div class="col-sm-4">
                 <select class="form-control" id="id" name="estado_id">
                   <option value='0'>-- No asignado --</option>
                   {% for estado in estados %}
@@ -74,10 +47,9 @@
                   {% endfor %}
                 </select>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="recargado" class="col-lg-2 control-label">Recarga de toner</label>
-              <div class="col-lg-10">
+            
+              <label for="recargado" class="col-sm-2 control-label">Recarga de toner</label>
+              <div class="col-sm-4">
                 <div class="checkbox">
                   <label>
                     <input type="checkbox"  name="recargado"
@@ -86,15 +58,49 @@
                 </div>
               </div>
             </div>
+
+            
             <div class="form-group">
-              <label for="descripcion" class="col-lg-2 control-label">Descripción</label>
-              <div class="col-lg-10">
+              <label class="col-sm-2 control-label" for="textinput">Marca</label>
+              <div class="col-sm-4">
+                <input class="form-control" readonly="true" type="text" name="marca"
+                       id="marca" value="{{ toner.marca }}" />
+              </div>
+
+              <label class="col-sm-2 control-label" for="textinput">Modelo</label>
+              <div class="col-sm-4">
+                <input class="form-control" readonly="true" type="text" name="modelo"
+                       id="modelo" value="{{ toner.marca }}" />
+
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="textinput">Impresora</label>
+              <div class="col-sm-4">
+                <input class="form-control" readonly="true" type="text" name="impresora"
+                       id="impresora" value="{{ toner.impresora.nombre }}" />
+              </div>
+
+              <label class="col-sm-2 control-label" for="textinput">Proveedor</label>
+              <div class="col-sm-4">
+                <input class="form-control" readonly="true" type="text" name="proveedor"
+                       id="proveedor" value="{{ toner.proveedor.nombre }}" />
+              </div>
+            </div>
+
+
+            
+            <div class="form-group">
+              <label for="descripcion" class="col-sm-2 control-label">Descripción</label>
+              <div class="col-sm-10">
                 <textarea class="form-control" rows="3"  name="descripcion" readonly="true"
                           id="descripcion">{{ toner.descripcion }}</textarea>
               </div>
             </div>
             <div class="form-group">
-              <div class="col-lg-10 col-lg-offset-2">
+              <div class="col-sm-10 col-sm-offset-2">
                 <button type="submit" class="btn btn-primary">Actualizar</button>
               </div>
             </div>
