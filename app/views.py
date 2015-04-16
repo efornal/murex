@@ -52,7 +52,7 @@ def toner_detail(request,toner_id):
 @login_required
 def search(request):
     text_search = request.POST['search_field']
-    toners_list = Toner.objects.filter(identificador=text_search).order_by('identificador')
+    toners_list = Toner.objects.filter(identificador__contains=text_search).order_by('identificador')
     paginator = Paginator(toners_list, 3)
     page = request.GET.get('page')
     try:
@@ -62,7 +62,7 @@ def search(request):
     except EmptyPage:
         toners = paginator.page(paginator.num_pages)
 
-    context = {'toners': toners}
+    context = {'toners': toners, 'text_search': text_search }
     return render(request, 'toners.html', context)
 
 

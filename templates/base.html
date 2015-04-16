@@ -59,9 +59,13 @@
                  title="Listado de todos los toners" >Toners</a>
             </li>
           </ul>
-          <form class="navbar-form navbar-left" role="search">
+          <form method="post" action="{% url 'search' %}"
+            class="navbar-form navbar-left" id="search_form">
+            {% csrf_token %}
             <div class="form-group">
-              <input class="form-control" placeholder="Search" type="text">
+              <input class="form-control" name="search_field"
+                     placeholder="Identificador" type="text"
+                     value="{{ text_search }}">
             </div>
           </form>
           <ul class="nav navbar-nav navbar-right">
