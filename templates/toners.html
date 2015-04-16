@@ -38,8 +38,9 @@
               <td>{{ toner.ultimo_estado.nombre }}</td>
               <td>
                 <div class="toner-detail">
-                  <a  href="{% url 'toner_detail' toner.id %}">
-                    <img src='/static/images/toner_detail.png'>
+                  <a  href="{% url 'toner_detail' toner.id %}"
+                      title="Detalles estados {{ toner.identificador }}">
+                     <i class="glyphicon glyphicon-list"></i>
                   </a>
                 </div>
               </td>
