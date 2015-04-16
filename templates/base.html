@@ -63,9 +63,10 @@
             class="navbar-form navbar-left" id="search_form">
             {% csrf_token %}
             <div class="form-group">
-              <input class="form-control" name="search_field"
+             <input class="form-control" name="search_field"
                      placeholder="Identificador" type="text"
-                     value="{{ text_search }}">
+                     value="{{ text_search }}">&nbsp;&nbsp;
+             <i class="glyphicon glyphicon-search" style="right:40px;"></i> 
             </div>
           </form>
           <ul class="nav navbar-nav navbar-right">
