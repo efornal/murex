@@ -1,0 +1,13 @@
+
+.toner-detail {
+}
+
+.toner-detail:hover {
+    opacity: .3;
+    filter: alpha(opacity=30);
+}
+
+.toner-detail img {
+    width:  18px;
+    height: 13px;
+}

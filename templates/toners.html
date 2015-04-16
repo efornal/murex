@@ -37,9 +37,11 @@
               <td>{{ toner.modelo }}</td>
               <td>{{ toner.ultimo_estado.nombre }}</td>
               <td>
-                <a href="{% url 'toner_detail' toner.id %}">
-                  <img src="/static/images/toner_detail.png">
-                </a>
+                <div class="toner-detail">
+                  <a  href="{% url 'toner_detail' toner.id %}">
+                    <img src='/static/images/toner_detail.png'>
+                  </a>
+                </div>
               </td>
             </tr>
             {% endfor %}
