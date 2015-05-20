@@ -29,3 +29,6 @@ psql -h localhost -U murex_owner -p 5432 -d murex_db
 python manage.py syncdb
 python manage.py migrate
 ```
+
+### Features
+- List of toner by models
