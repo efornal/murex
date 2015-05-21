@@ -12,7 +12,22 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def index(request):
     return redirect('toners')
 
+@login_required
+def toners_por_modelo (request):
+    toners_list = Toner.objects.order_by('modelo')
+    paginator = Paginator(toners_list, 10)
+    page = request.GET.get('page')
+    try:
+        toners = paginator.page(page)
+    except PageNotAnInteger:
+        toners = paginator.page(1)
+    except EmptyPage:
+        toners = paginator.page(paginator.num_pages)
 
+    context = {'toners': toners}
+    return render(request, 'toners.html', context)
+
+    
 @login_required
 def toners(request):
     toners_list = Toner.objects.order_by('identificador')
