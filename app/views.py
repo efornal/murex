@@ -10,12 +10,12 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
 def index(request):
-    return redirect('toners')
+    return redirect('toners_por_modelos')
 
 @login_required
-def toners_por_modelo (request):
-    toners_list = Toner.objects.order_by('modelo')
-    paginator = Paginator(toners_list, 10)
+def toners_por_modelos (request):
+    toners_list = Toner.objects.order_by('modelo','identificador')
+    paginator = Paginator(toners_list, 25)
     page = request.GET.get('page')
     try:
         toners = paginator.page(page)
@@ -30,8 +30,8 @@ def toners_por_modelo (request):
     
 @login_required
 def toners(request):
-    toners_list = Toner.objects.order_by('identificador')
-    paginator = Paginator(toners_list, 10)
+    toners_list = Toner.objects.order_by('identificador','modelo')
+    paginator = Paginator(toners_list, 25)
     page = request.GET.get('page')
     try:
         toners = paginator.page(page)
@@ -47,7 +47,7 @@ def toners(request):
 def toner_detail(request,toner_id):
     toner = Toner.objects.get(id=toner_id)
     status_list = EstadoToner.objects.filter(toner_id=toner_id).order_by('-fecha_inicio')
-    paginator = Paginator(status_list, 10)
+    paginator = Paginator(status_list, 25)
     page = request.GET.get('page')
 
     try:
@@ -67,7 +67,7 @@ def toner_detail(request,toner_id):
 def search(request):
     text_search = request.POST['search_field']
     toners_list = Toner.objects.filter(identificador__contains=text_search).order_by('identificador')
-    paginator = Paginator(toners_list, 3)
+    paginator = Paginator(toners_list, 25)
     page = request.GET.get('page')
     try:
         toners = paginator.page(page)

@@ -55,14 +55,15 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav navbar-left">
             <li>
-              <a href="{% url 'toners' %}"
+              <a href="{% url 'toners_por_modelos' %}"
                  title="Listado de todos los toners" >Toners</a>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                  role="button" aria-expanded="false">Listados <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="{% url 'toners_por_modelo' %}">Toners por modelo</a></li>
+                <li><a href="{% url 'toners_por_modelos' %}">Toners por modelos</a></li>
+                <li><a href="{% url 'toners' %}">Toners por identificador</a></li>
               </ul>
             </li>
           </ul>
