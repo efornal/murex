@@ -98,11 +98,11 @@ def toner(request, toner_id):
     elif request.method == 'POST':
         toner = Toner.objects.get(id=toner_id)
         nuevo_estado_id = request.POST['estado_id'] or None
-        if 'recargado' in request.POST and request.POST['recargado']:
-            fue_recargado = True
-        else:
-            fue_recargado = False
-        toner.definir_estado(nuevo_estado_id, fue_recargado)
+        descripcion = request.POST['descripcion'] or None
+        toner.definir_estado(nuevo_estado_id)
+        if descripcion != toner.descripcion:
+            toner.descripcion = descripcion
+            toner.save(update_fields=['descripcion'])
         return redirect('toners')
     raise Http404
       

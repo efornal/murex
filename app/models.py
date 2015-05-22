@@ -3,6 +3,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from datetime import datetime
 import django.dispatch
+import logging
 
 class Proveedor(models.Model):
     id = models.AutoField(primary_key=True,null=False)
@@ -65,6 +66,7 @@ class Toner(models.Model):
     proveedor = models.ForeignKey(Proveedor, null=True, blank=True)
     impresora = models.ForeignKey(Impresora, null=True, blank=True)
     estados = models.ManyToManyField(Estado, through='EstadoToner')
+    recargas  = models.IntegerField(default=0,null=False)
     
     class Meta:
         db_table = 'toners'
@@ -80,16 +82,26 @@ class Toner(models.Model):
         estado_actual = EstadoToner.objects.filter(toner_id=self.id).order_by('-fecha_inicio')[0]
         return Estado.objects.get(id=estado_actual.estado_id)
 
-    def definir_estado(self, nuevo_estado_id, fue_recargado=False):
+    def definir_estado(self, nuevo_estado_id):
         estado = self.estado_actual()
+        logging.warning("==> %s == %s" % (estado.estado_id, nuevo_estado_id))
+        if estado.estado_id == int(nuevo_estado_id):
+            logging.warning("==> estados iguales, se cancela" )
+            return False
         estado.fecha_fin = datetime.now()
         estado_nuevo = EstadoToner(toner_id = self.id,
                                    estado_id = nuevo_estado_id,
-                                   fecha_inicio = datetime.now(),
-                                   recargado = fue_recargado)
+                                   fecha_inicio = datetime.now())
         estado_nuevo.save()
         estado.save(update_fields=['fecha_fin'])
-        
+        logging.warning("Nuevo estado %s" % nuevo_estado_id)
+        logging.warning("recargar? %s" % (int(estado_nuevo.estado_id) == 3))
+        if int(estado_nuevo.estado_id) == 3: # 3 => En stock cargado
+            self.recargas += 1
+            self.save(update_fields=['recargas'])
+            logging.warning("Recargado %s" % self.recargas)
+        return True
+            
 @receiver(post_save, sender=Toner)
 def estado_inicial(sender, instance, **kwargs):
     if kwargs['created']:

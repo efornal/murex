@@ -47,6 +47,12 @@
                   {% endfor %}
                 </select>
               </div>
+              <label class="col-sm-2 control-label" for="textinput">Recargas</label>
+              <div class="col-sm-4">
+                <input class="form-control" readonly="true" type="text" name="modelo"
+                       id="modelo" value="{{ toner.recargas }}" />
+
+              </div>
             </div>
 
             
@@ -85,7 +91,7 @@
             <div class="form-group">
               <label for="descripcion" class="col-sm-2 control-label">Descripción</label>
               <div class="col-sm-10">
-                <textarea class="form-control" rows="3"  name="descripcion" readonly="true"
+                <textarea class="form-control" rows="3"  name="descripcion"
                           id="descripcion">{{ toner.descripcion }}</textarea>
               </div>
             </div>
