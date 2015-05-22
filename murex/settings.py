@@ -26,7 +26,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# set static path for production
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Application definition
 
