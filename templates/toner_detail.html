@@ -28,7 +28,7 @@
           </thead>
           <tbody>
             {% for state in status %}
-            <tr {% if first.id = state.id %} {{"class='active'"}} {%endif%}>
+            <tr {% if first.id = state.id %} {{"class='info'"}} {%endif%}>
               <td>{{ state.estado.nombre }}</td>
               <td>{{ state.fecha_inicio | date:'d-m-Y H:i' }}</td>
               <td>{{ state.fecha_fin | date:'d-m-Y H:i' }}</td>
