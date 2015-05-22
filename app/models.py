@@ -3,7 +3,6 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from datetime import datetime
 import django.dispatch
-import logging
 
 class Proveedor(models.Model):
     id = models.AutoField(primary_key=True,null=False)
@@ -84,9 +83,7 @@ class Toner(models.Model):
 
     def definir_estado(self, nuevo_estado_id):
         estado = self.estado_actual()
-        logging.warning("==> %s == %s" % (estado.estado_id, nuevo_estado_id))
         if estado.estado_id == int(nuevo_estado_id):
-            logging.warning("==> estados iguales, se cancela" )
             return False
         estado.fecha_fin = datetime.now()
         estado_nuevo = EstadoToner(toner_id = self.id,
@@ -94,12 +91,9 @@ class Toner(models.Model):
                                    fecha_inicio = datetime.now())
         estado_nuevo.save()
         estado.save(update_fields=['fecha_fin'])
-        logging.warning("Nuevo estado %s" % nuevo_estado_id)
-        logging.warning("recargar? %s" % (int(estado_nuevo.estado_id) == 3))
         if int(estado_nuevo.estado_id) == 3: # 3 => En stock cargado
             self.recargas += 1
             self.save(update_fields=['recargas'])
-            logging.warning("Recargado %s" % self.recargas)
         return True
             
 @receiver(post_save, sender=Toner)
