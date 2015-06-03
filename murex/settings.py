@@ -68,7 +68,7 @@ DATABASES = {
         'NAME': 'murex_db',
         'USER': 'murex_owner',
         'PASSWORD': 'owner',
-        'PORT': '5433',        
+        'PORT': '5432',        
         'HOST': 'localhost',
     }
 }
