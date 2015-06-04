@@ -14,12 +14,29 @@ import logging
 def index(request):
     return redirect('toners_por_modelos')
 
+
 def rotate_colour(color):
     if color == 'info':
         return 'warning'
     else:
         return 'info'
 
+    
+def class_by_model(toners):
+    a = []
+    model = toners[0].modelo
+    color = 'warning'
+    for toner in toners:
+        if (toner.modelo == model):
+            a.append(color)
+        else:
+            color = rotate_colour(color)
+            a.append(color)
+            model = toner.modelo
+    a.reverse()
+    return a
+
+  
 @login_required
 def toners_por_modelos (request):
     toners_list = Toner.objects.order_by('modelo','identificador')
@@ -32,19 +49,8 @@ def toners_por_modelos (request):
     except EmptyPage:
         toners = paginator.page(paginator.num_pages)
 
-    a = []
-    model = toners[0].modelo
-    color = 'warning'
-    for toner in toners:
-        if (toner.modelo == model):
-            a.append(color)
-        else:
-            color = rotate_colour(color)
-            a.append(color)
-            model = toner.modelo
-    a.reverse()
 
-    context = {'toners': toners, 'a':a,}
+    context = {'toners': toners, 'class_model':class_by_model(toners),}
     return render(request, 'toners.html', context)
 
     

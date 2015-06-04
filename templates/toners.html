@@ -33,7 +33,7 @@
           </thead>
           <tbody>
             {% for toner in toners %}
-            <tr class="{% with total=a.pop %}{{ total }}{% endwith %}">
+            <tr class="{% if class_model == None %}{{ 'warning' }}{% endif %}{% with class=class_model.pop %}{{ class }}{% endwith %}">
               <td><a href="{% url 'toner' toner.id %}">{{ toner.identificador }}</a></td>
               <td>{{ toner.modelo }}</td>
               <td>{{ toner.marca }}</td>
