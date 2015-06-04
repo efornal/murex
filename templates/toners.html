@@ -37,7 +37,11 @@
               <td><a href="{% url 'toner' toner.id %}">{{ toner.identificador }}</a></td>
               <td>{{ toner.modelo }}</td>
               <td>{{ toner.marca }}</td>
-              <td>{{ toner.ultimo_estado.nombre }}</td>
+              <td>
+                <!-- <i class="glyphicon {% with class=icon_by_status %}{{ class }}{% endwith %}" -->
+                <!--    style="right:5px;"></i> -->
+                {{ toner.ultimo_estado.nombre }}
+              </td>
               <td>
                 <div class="toner-detail">
                   <a  href="{% url 'toner_detail' toner.id %}"

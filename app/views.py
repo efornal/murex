@@ -14,13 +14,20 @@ import logging
 def index(request):
     return redirect('toners_por_modelos')
 
-
 def rotate_colour(color):
     if color == 'info':
         return 'warning'
     else:
         return 'info'
 
+#def icon_by_status():
+    # dado de baja: glyphicon-remove
+    # En devolucion: glyphicon-share-alt
+    # En stock vacio: glyphicon-retweet
+    # En stock cargado: glyphicon-lock
+    # En Proveedor: glyphicon-tent
+    # en impresora: glyphicon-print
+#    return 'glyphicon-tent'
     
 def class_by_model(toners):
     a = []
@@ -48,7 +55,6 @@ def toners_por_modelos (request):
         toners = paginator.page(1)
     except EmptyPage:
         toners = paginator.page(paginator.num_pages)
-
 
     context = {'toners': toners, 'class_model':class_by_model(toners),}
     return render(request, 'toners.html', context)

@@ -34,3 +34,7 @@ td {
 }
 
 
+.glyphicon {
+    opacity: .3;
+    filter: alpha(opacity=30);
+}
