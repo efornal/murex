@@ -8,6 +8,8 @@
   {% endfor %}
 {% endif %}
 
+
+
 <div class="bs-docs-section">
 
   <div class="row">
@@ -19,7 +21,7 @@
       <div class="bs-component">
 
         {% if toners %}
-        <table class="table table-striped table-hover ">
+        <table class="table table-striped table-hover " cellpadding="100" >
           <thead>
             <tr>
               <th>Identificador</th>
@@ -31,7 +33,7 @@
           </thead>
           <tbody>
             {% for toner in toners %}
-            <tr>
+            <tr class="{% with total=a.pop %}{{ total }}{% endwith %}">
               <td><a href="{% url 'toner' toner.id %}">{{ toner.identificador }}</a></td>
               <td>{{ toner.modelo }}</td>
               <td>{{ toner.marca }}</td>

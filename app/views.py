@@ -7,10 +7,18 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from app.models import Toner, Estado, EstadoToner
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import logging
+
 
 @login_required
 def index(request):
     return redirect('toners_por_modelos')
+
+def rotate_colour(color):
+    if color == 'info':
+        return 'warning'
+    else:
+        return 'info'
 
 @login_required
 def toners_por_modelos (request):
@@ -24,15 +32,30 @@ def toners_por_modelos (request):
     except EmptyPage:
         toners = paginator.page(paginator.num_pages)
 
-    context = {'toners': toners}
+    a = []
+    model = toners[0].modelo
+    color = 'warning'
+    for toner in toners:
+        if (toner.modelo == model):
+            a.append(color)
+        else:
+            color = rotate_colour(color)
+            a.append(color)
+            model = toner.modelo
+    a.reverse()
+
+    context = {'toners': toners, 'a':a,}
     return render(request, 'toners.html', context)
 
     
 @login_required
 def toners(request):
+    last_model = ''
     toners_list = Toner.objects.order_by('identificador','modelo')
     paginator = Paginator(toners_list, 25)
     page = request.GET.get('page')
+
+ 
     try:
         toners = paginator.page(page)
     except PageNotAnInteger:
@@ -40,7 +63,8 @@ def toners(request):
     except EmptyPage:
         toners = paginator.page(paginator.num_pages)
 
-    context = {'toners': toners}
+    
+    context = {'toners': toners, 'last_model': last_model}
     return render(request, 'toners.html', context)
 
 @login_required
