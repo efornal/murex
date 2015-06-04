@@ -8,6 +8,7 @@
   {% endfor %}
 {% endif %}
 
+{% load application_filters %}
 
 
 <div class="bs-docs-section">
@@ -38,8 +39,7 @@
               <td>{{ toner.modelo }}</td>
               <td>{{ toner.marca }}</td>
               <td>
-                <!-- <i class="glyphicon {% with class=icon_by_status %}{{ class }}{% endwith %}" -->
-                <!--    style="right:5px;"></i> -->
+                <i class="glyphicon {{ class|icon_by_status:toner.ultimo_estado.id }}" style="right:5px;"></i>
                 {{ toner.ultimo_estado.nombre }}
               </td>
               <td>

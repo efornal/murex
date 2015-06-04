@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'bootstrap_themes',
     'app',
+    'django.templatetags',
 )
 
 MIDDLEWARE_CLASSES = (
