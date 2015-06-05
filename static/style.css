@@ -38,3 +38,7 @@ td {
     opacity: .3;
     filter: alpha(opacity=30);
 }
+
+.navbar-nav {
+    margin: 0px 0px 0px 100px;
+}
