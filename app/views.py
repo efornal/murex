@@ -9,6 +9,9 @@ from app.models import Toner, Estado, EstadoToner
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import logging
 
+def class_listings():
+    return ['info', 'warning']
+
 
 @login_required
 def index(request):
@@ -16,25 +19,25 @@ def index(request):
 
 
 def rotate_colour(color):
-    if color == 'info':
-        return 'warning'
+    if color == class_listings()[0]:
+        return class_listings()[1]
     else:
-        return 'info'
+        return class_listings()[0]
 
     
 def class_by_model(toners):
-    a = []
+    rows_of_changes = []
     model = toners[0].modelo
-    color = 'warning'
+    color = class_listings()[1]
     for toner in toners:
         if (toner.modelo == model):
-            a.append(color)
+            rows_of_changes.append(color)
         else:
             color = rotate_colour(color)
-            a.append(color)
+            rows_of_changes.append(color)
             model = toner.modelo
-    a.reverse()
-    return a
+    rows_of_changes.reverse()
+    return rows_of_changes
 
   
 @login_required

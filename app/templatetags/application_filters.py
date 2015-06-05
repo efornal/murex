@@ -5,27 +5,35 @@ import logging
 register = template.Library()
 
 
+def class_listings(arg):
+    return ['info', 'warning']
 
-# dado de baja: glyphicon-remove
-# En devolucion: glyphicon-share-alt
-# En stock vacio: glyphicon-retweet
-# En stock cargado: glyphicon-lock
-# En Proveedor: glyphicon-tent
-# en impresora: glyphicon-print
+
+@register.filter(name='class_listings')
+@stringfilter
+def class_listing(arg,position):
+    return ['info', 'warning'][position]
+
+
 @register.filter(name='icon_by_status')
 @stringfilter
 def icon_by_status(arg, state):
-    logging.error("ERR %s" % state)
     if state == 6:
-        return 'glyphicon-remove'
+        return 'glyphicon-remove' # Dado de baja
     elif state == 5:
-        return 'glyphicon-share-alt'
+        return 'glyphicon-share-alt' # En devolucion
     elif state == 4:
-        return ' glyphicon-retweet'
+        return ' glyphicon-retweet' # En stock vacio
     elif state == 3:
-        return 'glyphicon-lock'
+        return 'glyphicon-lock' # En stock cargado
     elif state == 2:
-        return 'glyphicon-wrench'
+        return 'glyphicon-wrench' # En Proveedor
     elif state == 1:
-        return 'glyphicon-print'
- 
+        return 'glyphicon-print' # En impresora
+
+    
+@register.filter(name='icon_by_status_tag')
+@stringfilter
+def icon_by_status_tag(arg, state):
+    icon_class = icon_by_status(None,state)
+    return ("<i class='glyphicon %s'></i>"  % icon_class)

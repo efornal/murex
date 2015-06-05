@@ -8,6 +8,8 @@
   {% endfor %}
 {% endif %}
 
+{% load application_filters %}
+
 <div class="bs-docs-section">
 
   <div class="row">
@@ -28,8 +30,11 @@
           </thead>
           <tbody>
             {% for state in status %}
-            <tr {% if first.id = state.id %} {{"class='info'"}} {%endif%}>
-              <td>{{ state.estado.nombre }}</td>
+            <tr {% if first.id = state.id %} class="{{ class|class_listings:0}} {%else%}{{class|class_listings:1}}{%endif%}">
+              <td>
+                <i class="glyphicon {{ class|icon_by_status:state.estado_id }}"></i> &nbsp;
+                {{ state.estado.nombre }}
+              </td>
               <td>{{ state.fecha_inicio | date:'d-m-Y H:i' }}</td>
               <td>{{ state.fecha_fin | date:'d-m-Y H:i' }}</td>
             </tr>

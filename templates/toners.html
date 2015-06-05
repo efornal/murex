@@ -39,7 +39,7 @@
               <td>{{ toner.modelo }}</td>
               <td>{{ toner.marca }}</td>
               <td>
-                <i class="glyphicon {{ class|icon_by_status:toner.ultimo_estado.id }}" style="right:5px;"></i>
+                {{ class|icon_by_status_tag:toner.ultimo_estado.id | safe }}&nbsp;
                 {{ toner.ultimo_estado.nombre }}
               </td>
               <td>
