@@ -30,5 +30,4 @@ python manage.py syncdb
 python manage.py migrate
 ```
 
-### Features
-- List of toner by models
+
