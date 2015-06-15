@@ -13,6 +13,5 @@ class TonerAdmin(admin.ModelAdmin):
 admin.site.register(Proveedor, ProveedorAdmin)
 admin.site.register(Oficina)
 admin.site.register(Impresora)
-admin.site.register(Estado)
 admin.site.register(Toner, TonerAdmin)
 
