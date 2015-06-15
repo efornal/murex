@@ -17,21 +17,21 @@ def class_intersection(arg,enable):
 @stringfilter
 def icon_by_status(arg, state):
     if state == 6:
-        return 'glyphicon-remove' # Dado de baja
+        return 'remove.png' # Dado de baja
     elif state == 5:
-        return 'glyphicon-share-alt' # En devolucion
+        return 'share-alt.png' # En devolucion
     elif state == 4:
-        return ' glyphicon-retweet' # En stock vacio
+        return 'retweet.png' # En stock vacio
     elif state == 3:
-        return 'glyphicon-lock' # En stock cargado
+        return 'lock.png' # En stock cargado
     elif state == 2:
-        return 'glyphicon-wrench' # En Proveedor
+        return 'wrench.png' # En Proveedor
     elif state == 1:
-        return 'glyphicon-print' # En impresora
+        return 'print.png' # En impresora
 
     
 @register.filter(name='icon_by_status_tag')
 @stringfilter
 def icon_by_status_tag(arg, state):
-    icon_class = icon_by_status(None,state)
-    return ("<i class='glyphicon %s'></i>"  % icon_class)
+    icon = icon_by_status(None,state)
+    return ("<img src='/static/images/%s'></img>"  % icon)
