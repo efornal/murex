@@ -17,7 +17,7 @@
 - model: app.estado
   pk: 5
   fields:
-    nombre: En devolución
+    nombre: En garantía
 - model: app.estado
   pk: 6
   fields:
