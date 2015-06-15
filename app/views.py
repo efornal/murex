@@ -8,33 +8,21 @@ from django.shortcuts import redirect
 from app.models import Toner, Estado, EstadoToner
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import logging
-
-def class_listings():
-    return ['info', 'warning']
-
+from django.conf import settings
 
 @login_required
 def index(request):
     return redirect('toners_por_modelos')
 
 
-def rotate_colour(color):
-    if color == class_listings()[0]:
-        return class_listings()[1]
-    else:
-        return class_listings()[0]
-
-    
-def class_by_model(toners):
+def list_changes(toners):
     rows_of_changes = []
     model = toners[0].modelo
-    color = class_listings()[1]
     for toner in toners:
         if (toner.modelo == model):
-            rows_of_changes.append(color)
+            rows_of_changes.append('')
         else:
-            color = rotate_colour(color)
-            rows_of_changes.append(color)
+            rows_of_changes.append(settings.CSS_SEPARATOR_NAME)
             model = toner.modelo
     rows_of_changes.reverse()
     return rows_of_changes
@@ -43,7 +31,7 @@ def class_by_model(toners):
 @login_required
 def toners_por_modelos (request):
     toners_list = Toner.objects.order_by('modelo','identificador')
-    paginator = Paginator(toners_list, 25)
+    paginator = Paginator(toners_list, settings.PAGINATE_BY_PAGE)
     page = request.GET.get('page')
     try:
         toners = paginator.page(page)
@@ -52,7 +40,7 @@ def toners_por_modelos (request):
     except EmptyPage:
         toners = paginator.page(paginator.num_pages)
 
-    context = {'toners': toners, 'class_model':class_by_model(toners),}
+    context = {'toners': toners, 'class_model':list_changes(toners),}
     return render(request, 'toners.html', context)
 
     
@@ -60,7 +48,7 @@ def toners_por_modelos (request):
 def toners(request):
     last_model = ''
     toners_list = Toner.objects.order_by('identificador','modelo')
-    paginator = Paginator(toners_list, 25)
+    paginator = Paginator(toners_list, settings.PAGINATE_BY_PAGE)
     page = request.GET.get('page')
 
  
@@ -79,7 +67,7 @@ def toners(request):
 def toner_detail(request,toner_id):
     toner = Toner.objects.get(id=toner_id)
     status_list = EstadoToner.objects.filter(toner_id=toner_id).order_by('-fecha_inicio')
-    paginator = Paginator(status_list, 25)
+    paginator = Paginator(status_list, settings.PAGINATE_BY_PAGE)
     page = request.GET.get('page')
 
     try:
@@ -99,7 +87,7 @@ def toner_detail(request,toner_id):
 def search(request):
     text_search = request.POST['search_field']
     toners_list = Toner.objects.filter(identificador__contains=text_search).order_by('identificador')
-    paginator = Paginator(toners_list, 25)
+    paginator = Paginator(toners_list, settings.PAGINATE_BY_PAGE)
     page = request.GET.get('page')
     try:
         toners = paginator.page(page)

@@ -42,3 +42,9 @@ td {
 .navbar-nav {
     margin: 0px 0px 0px 100px;
 }
+
+.separator {
+    border-style: solid !important;
+    border-color: #F9F9F9;
+    border-width: 5px 0px !important;
+}

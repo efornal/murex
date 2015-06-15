@@ -5,14 +5,12 @@ import logging
 register = template.Library()
 
 
-def class_listings(arg):
-    return ['info', 'warning']
-
-
-@register.filter(name='class_listings')
+@register.filter(name='class_intersection')
 @stringfilter
-def class_listing(arg,position):
-    return ['info', 'warning'][position]
+def class_intersection(arg,enable):
+    if enable:
+        return 'intersection'
+    return ''
 
 
 @register.filter(name='icon_by_status')

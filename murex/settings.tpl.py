@@ -114,3 +114,9 @@ from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
 )
+
+# nombre de la clase css usada como separador en listados
+CSS_SEPARATOR_NAME = 'separator'
+
+# Numero de items por pagina para todos los listados
+PAGINATE_BY_PAGE = 25

@@ -34,15 +34,18 @@
           </thead>
           <tbody>
             {% for toner in toners %}
-            <tr class="{% if class_model == None %}{{ 'warning' }}{% endif %}{% with class=class_model.pop %}{{ class }}{% endwith %}">
-              <td><a href="{% url 'toner' toner.id %}">{{ toner.identificador }}</a></td>
-              <td>{{ toner.modelo }}</td>
-              <td>{{ toner.marca }}</td>
-              <td>
+            {% with class=class_model.pop %}
+            <tr class="warning">
+              <td class="{{class}}">
+                <a href="{% url 'toner' toner.id %}">{{ toner.identificador }}</a>
+              </td>
+              <td class="{{class}}">{{ toner.modelo }}</td>
+              <td class="{{class}}">{{ toner.marca }}</td>
+              <td class="{{class}}">
                 {{ class|icon_by_status_tag:toner.ultimo_estado.id | safe }}&nbsp;
                 {{ toner.ultimo_estado.nombre }}
               </td>
-              <td>
+              <td class="{{class}}" >
                 <div class="toner-detail">
                   <a  href="{% url 'toner_detail' toner.id %}"
                       title="Detalles estados {{ toner.identificador }}">
@@ -51,6 +54,7 @@
                 </div>
               </td>
             </tr>
+              {% endwith %}
             {% endfor %}
           </tbody>
         </table>
