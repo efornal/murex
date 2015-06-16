@@ -5,6 +5,16 @@ import logging
 register = template.Library()
 
 
+def class_listings(arg):
+    return ['info', 'warning']
+
+
+@register.filter(name='class_listings')
+@stringfilter
+def class_listing(arg,position):
+    return ['info', 'warning'][position]
+
+
 @register.filter(name='class_intersection')
 @stringfilter
 def class_intersection(arg,enable):

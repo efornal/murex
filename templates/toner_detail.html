@@ -32,7 +32,7 @@
             {% for state in status %}
             <tr {% if first.id = state.id %} class="{{ class|class_listings:0}} {%else%}{{class|class_listings:1}}{%endif%}">
               <td>
-                <i class="glyphicon {{ class|icon_by_status:state.estado_id }}"></i> &nbsp;
+                {{ class|icon_by_status_tag:state.estado_id | safe }}&nbsp;
                 {{ state.estado.nombre }}
               </td>
               <td>{{ state.fecha_inicio | date:'d-m-Y H:i' }}</td>
