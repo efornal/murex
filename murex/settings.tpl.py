@@ -120,3 +120,16 @@ CSS_SEPARATOR_NAME = 'separator'
 
 # Numero de items por pagina para todos los listados
 PAGINATE_BY_PAGE = 25
+
+
+
+# loggin querys in develompent
+# if DEBUG:
+#     import logging
+#     l = logging.getLogger('django.db.backends')
+#     l.setLevel(logging.DEBUG)
+#     l.addHandler(logging.StreamHandler())
+#     logging.basicConfig(
+#         level = logging.DEBUG,
+#         format = " %(levelname)s %(name)s: %(message)s",
+#     )
