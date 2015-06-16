@@ -27,6 +27,19 @@ def list_changes(toners):
     rows_of_changes.reverse()
     return rows_of_changes
 
+
+def changes_states_list(toners):
+    rows_of_changes = []
+    state = toners[0].ultimo_estado().id
+    for toner in toners:
+        if (toner.ultimo_estado().id == state):
+            rows_of_changes.append('')
+        else:
+            rows_of_changes.append(settings.CSS_SEPARATOR_NAME)
+            state = toner.ultimo_estado().id
+    rows_of_changes.reverse()
+    return rows_of_changes
+
   
 @login_required
 def toners_por_modelos (request):
@@ -41,6 +54,22 @@ def toners_por_modelos (request):
         toners = paginator.page(paginator.num_pages)
 
     context = {'toners': toners, 'class_model':list_changes(toners),}
+    return render(request, 'toners.html', context)
+
+
+@login_required
+def toners_por_estados (request):
+    toners_list = Toner.por_estados()
+    paginator = Paginator(list(toners_list), settings.PAGINATE_BY_PAGE)
+    page = request.GET.get('page')
+    try:
+        toners = paginator.page(page)
+    except PageNotAnInteger:
+        toners = paginator.page(1)
+    except EmptyPage:
+        toners = paginator.page(paginator.num_pages)
+
+    context = {'toners': toners, 'class_model':changes_states_list(toners),}
     return render(request, 'toners.html', context)
 
     

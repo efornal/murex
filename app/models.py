@@ -95,7 +95,17 @@ class Toner(models.Model):
             self.recargas += 1
             self.save(update_fields=['recargas'])
         return True
-            
+
+    @classmethod
+    def por_estados(cls):
+        query = "SELECT t.id, t.identificador,e.estado_id,e.fecha_inicio" \
+        " FROM toners as t LEFT OUTER JOIN estados_toners as e ON ( t.id = e.toner_id )" \
+        " WHERE e.id = (select id from estados_toners " \
+                       "where toner_id = t.id order by fecha_inicio desc limit 1)" \
+        " ORDER BY e.estado_id ASC"
+        return cls.objects.raw( query )
+
+
 @receiver(post_save, sender=Toner)
 def estado_inicial(sender, instance, **kwargs):
     if kwargs['created']:
