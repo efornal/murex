@@ -44,4 +44,4 @@ def icon_by_status(arg, state):
 @stringfilter
 def icon_by_status_tag(arg, state):
     icon = icon_by_status(None,state)
-    return ("<img src='/static/images/%s'></img>"  % icon)
+    return ("<img src='/static/images/%s' \>"  % icon)
