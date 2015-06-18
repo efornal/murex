@@ -14,8 +14,31 @@ from django.conf import settings
 def index(request):
     return redirect('toners_por_modelos')
 
+def class_listings():
+    return [settings.CSS_SEPARATOR_COLOR1, settings.CSS_SEPARATOR_COLOR2]
 
-def list_changes(toners):
+def rotate_colour(color):
+    if color == class_listings()[0]:
+        return class_listings()[1]
+    else:
+        return class_listings()[0]
+
+def changes_models_list(toners):
+    rows_of_changes = []
+    model = toners[0].modelo
+    color = class_listings()[1]
+    for toner in toners:
+        if (toner.modelo == model):
+            rows_of_changes.append(color)
+        else:
+            color = rotate_colour(color)
+            rows_of_changes.append(color)
+            model = toner.modelo
+    rows_of_changes.reverse()
+    return rows_of_changes
+
+
+def variations_models_list(toners):
     rows_of_changes = []
     model = toners[0].modelo
     for toner in toners:
@@ -27,8 +50,22 @@ def list_changes(toners):
     rows_of_changes.reverse()
     return rows_of_changes
 
-
 def changes_states_list(toners):
+    rows_of_changes = []
+    state = toners[0].ultimo_estado().id
+    color = class_listings()[1]
+    for toner in toners:
+        if (toner.ultimo_estado().id == state):
+            rows_of_changes.append(color)
+        else:
+            color = rotate_colour(color)
+            rows_of_changes.append(color)
+            state = toner.ultimo_estado().id
+    rows_of_changes.reverse()
+    return rows_of_changes
+
+
+def variations_states_list(toners):
     rows_of_changes = []
     state = toners[0].ultimo_estado().id
     for toner in toners:
@@ -53,7 +90,9 @@ def toners_por_modelos (request):
     except EmptyPage:
         toners = paginator.page(paginator.num_pages)
 
-    context = {'toners': toners, 'class_model':list_changes(toners),}
+    context = {'toners': toners,
+               'changes_class':changes_models_list(toners),
+               'variations_class':variations_models_list(toners),}
     return render(request, 'toners.html', context)
 
 
@@ -69,7 +108,9 @@ def toners_por_estados (request):
     except EmptyPage:
         toners = paginator.page(paginator.num_pages)
 
-    context = {'toners': toners, 'class_model':changes_states_list(toners),}
+    context = {'toners': toners,
+               'changes_class':changes_states_list(toners),
+               'variations_class':variations_states_list(toners),}
     return render(request, 'toners.html', context)
 
     

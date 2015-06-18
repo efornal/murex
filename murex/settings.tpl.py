@@ -115,8 +115,15 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
 )
 
+
+
+
 # nombre de la clase css usada como separador en listados
 CSS_SEPARATOR_NAME = 'separator'
+
+# nombre de la clase (boostrap) usado como separador de color
+CSS_SEPARATOR_COLOR1 = 'info'
+CSS_SEPARATOR_COLOR2 = 'warning'
 
 # Numero de items por pagina para todos los listados
 PAGINATE_BY_PAGE = 25

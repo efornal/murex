@@ -34,18 +34,18 @@
           </thead>
           <tbody>
             {% for toner in toners %}
-            {% with class=class_model.pop %}
-            <tr class="warning">
-              <td class="{{class}}">
+            {% with variation_class=variations_class.pop %}
+            <tr class="{% if changes_class == None %}{{ 'warning' }}{% endif %}{% with change_class=changes_class.pop %}{{ change_class }}{% endwith %}">
+              <td class="{{variation_class}}">
                 <a href="{% url 'toner' toner.id %}">{{ toner.identificador }}</a>
               </td>
-              <td class="{{class}}">{{ toner.modelo }}</td>
-              <td class="{{class}}">{{ toner.marca }}</td>
-              <td class="{{class}}">
-                {{ class|icon_by_status_tag:toner.ultimo_estado.id | safe }}&nbsp;
+              <td class="{{variation_class}}">{{ toner.modelo }}</td>
+              <td class="{{variation_class}}">{{ toner.marca }}</td>
+              <td class="{{variation_class}}">
+                {{ class|icon_by_status_tag:toner.ultimo_estado.id | safe }}
                 {{ toner.ultimo_estado.nombre }}
               </td>
-              <td class="{{class}}" >
+              <td class="{{variation_class}}" >
                 <div class="toner-detail">
                   <a  href="{% url 'toner_detail' toner.id %}"
                       title="Detalles estados {{ toner.identificador }}">

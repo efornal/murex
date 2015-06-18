@@ -46,5 +46,5 @@ td {
 .separator {
     border-style: solid !important;
     border-color: #F9F9F9;
-    border-width: 5px 0px !important;
+    border-width: 5px 0px 0px 0px !important;
 }
