@@ -25,7 +25,9 @@ def rotate_colour(color):
 
 def changes_models_list(toners):
     rows_of_changes = []
-    model = toners[0].modelo
+    model = ''
+    if toners:
+        model = toners[0].modelo
     color = class_listings()[1]
     for toner in toners:
         if (toner.modelo == model):
@@ -40,7 +42,9 @@ def changes_models_list(toners):
 
 def variations_models_list(toners):
     rows_of_changes = []
-    model = toners[0].modelo
+    model = ''
+    if toners:
+        model = toners[0].modelo
     for toner in toners:
         if (toner.modelo == model):
             rows_of_changes.append('')
