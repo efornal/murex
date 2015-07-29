@@ -17,6 +17,7 @@ sudo pip install django==1.8
 sudo pip install django-extensions==1.5.5
 sudo pip install django-bootstrap-themes==3.1.2
 ```
+
 ### Postgres configuration
 ```bash
 createdb murex_db;
@@ -27,9 +28,9 @@ hostssl  murex_db     murex_owner        ::1/128                 password
 
 /etc/init.d/postgresql restart
 psql -h localhost -U murex_owner -p 5432 -d murex_db
+```
 
 ### App configuration
-
 ```bash
 git clone https://github.com/efornal/mollys.git
 
