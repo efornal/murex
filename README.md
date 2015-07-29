@@ -32,10 +32,10 @@ psql -h localhost -U murex_owner -p 5432 -d murex_db
 
 ### App configuration
 ```bash
-git clone https://github.com/efornal/mollys.git
+git clone https://github.com/efornal/murex.git
 
-cd mollys
-cp mollys/settings.tpl.py mollys/settings.py
+cd murex
+cp murex/settings.tpl.py murex/settings.py
 
 mkdir static_production
 
