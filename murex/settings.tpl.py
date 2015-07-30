@@ -12,6 +12,14 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+from django.utils.translation import ugettext_lazy as _
+LANGUAGE_CODE = 'es'
+LANGUAGES = (
+  ('es', _('Spanish')),
+  ('en', _('English')),
+)
+USE_I18N = True
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -53,6 +61,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 )
 
 ROOT_URLCONF = 'murex.urls'
@@ -77,17 +87,14 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'es'
-
-
 TIME_ZONE = 'UTC'
-
-USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
 
+LOCALE_PATHS = (
+     BASE_DIR + '/locale', )
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/

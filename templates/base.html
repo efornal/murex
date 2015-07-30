@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
+    {% load i18n %}
     {% load staticfiles %}
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="{% static 'jquery.dropdown.min.js' %}"></script>
@@ -8,10 +9,11 @@
     {% bootstrap_styles theme='spacelab' type='css' %}
     {% bootstrap_script use_min=True %}
     {% load application_filters %}
+    {% get_current_language as LANGUAGE_CODE %}
 
-    
+
     <meta charset="utf-8">
-    <title>{{ _('title') }}</title>
+    <title>    {{LANGUAGE_CODE}}{{ _('title') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="{% static 'style.css' %}">

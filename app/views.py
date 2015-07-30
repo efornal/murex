@@ -9,6 +9,8 @@ from app.models import Toner, Estado, EstadoToner
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import logging
 from django.conf import settings
+from django.utils.translation import ugettext as _
+from django.utils import translation
 
 @login_required
 def index(request):
