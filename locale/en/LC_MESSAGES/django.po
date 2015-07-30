@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-30 11:41-0300\n"
+"POT-Creation-Date: 2015-07-30 12:54-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,42 +11,135 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: murex/settings.py:18 murex/settings.tpl.py:18
+#: murex/settings.py:20 murex/settings.tpl.py:18
 msgid "Spanish"
 msgstr "Spanish"
 
-#: murex/settings.py:19 murex/settings.tpl.py:19
+#: murex/settings.py:21 murex/settings.tpl.py:19
 msgid "English"
 msgstr "English"
 
-#: templates/base.html:15 templates/base.html.py:51
+#: templates/base.html:16 templates/base.html.py:52
 msgid "title"
 msgstr "Murex"
 
-#: templates/base.html:69
+#: templates/base.html:70
 msgid "lists"
 msgstr ""
 
-#: templates/base.html:71
+#: templates/base.html:72
 msgid "toners_by_models"
 msgstr ""
 
-#: templates/base.html:72
+#: templates/base.html:73
 msgid "toners_by_state"
 msgstr ""
 
-#: templates/base.html:73
+#: templates/base.html:74
 msgid "toner_by_id"
 msgstr ""
 
-#: templates/base.html:82
+#: templates/base.html:83 templates/toner.html:33 templates/toners.html:28
 msgid "identifier"
 msgstr ""
 
-#: templates/base.html:89
+#: templates/base.html:90
 msgid "registered_user"
 msgstr ""
 
-#: templates/base.html:93
+#: templates/base.html:94
 msgid "close_session"
+msgstr ""
+
+#: templates/login.html:18
+msgid "home_login"
+msgstr ""
+
+#: templates/login.html:23
+msgid "user"
+msgstr ""
+
+#: templates/login.html:29
+msgid "password"
+msgstr ""
+
+#: templates/login.html:35
+msgid "log_in"
+msgstr ""
+
+#: templates/toner.html:41 templates/toner_detail.html:26
+#: templates/toners.html:31
+msgid "state"
+msgstr ""
+
+#: templates/toner.html:44
+msgid "pending"
+msgstr ""
+
+#: templates/toner.html:50
+msgid "refills"
+msgstr ""
+
+#: templates/toner.html:60 templates/toners.html:30
+msgid "trademark"
+msgstr ""
+
+#: templates/toner.html:66 templates/toners.html:29
+msgid "model"
+msgstr ""
+
+#: templates/toner.html:76
+msgid "printer"
+msgstr ""
+
+#: templates/toner.html:82
+msgid "supplier"
+msgstr ""
+
+#: templates/toner.html:92
+msgid "description"
+msgstr ""
+
+#: templates/toner.html:100
+msgid "updated"
+msgstr ""
+
+#: templates/toner_detail.html:18
+msgid "detail_for"
+msgstr ""
+
+#: templates/toner_detail.html:27
+msgid "starting_date"
+msgstr ""
+
+#: templates/toner_detail.html:28
+msgid "ending_date"
+msgstr ""
+
+#: templates/toner_detail.html:45 templates/toners.html:62
+msgid "without_results"
+msgstr ""
+
+#: templates/toner_detail.html:57 templates/toners.html:74
+msgid "previous"
+msgstr ""
+
+#: templates/toner_detail.html:61 templates/toners.html:78
+msgid "page"
+msgstr ""
+
+#: templates/toner_detail.html:61 templates/toners.html:78
+msgid "of"
+msgstr ""
+
+#: templates/toner_detail.html:65 templates/toners.html:82
+msgid "next"
+msgstr ""
+
+#: templates/toners.html:19
+msgid "toners"
+msgstr ""
+
+#: templates/toners.html:32
+msgid "detail"
 msgstr ""
