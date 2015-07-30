@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-30 10:07-0300\n"
+"POT-Creation-Date: 2015-07-30 10:40-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,3 +25,35 @@ msgstr "Español"
 #: murex/settings.py:19
 msgid "English"
 msgstr "Inglés"
+
+#: templates/base.html:13 templates/base.html.py:49
+msgid "title"
+msgstr "Murex"
+
+#: templates/base.html:67
+msgid "lists"
+msgstr "Listados"
+
+#: templates/base.html:69
+msgid "toners_by_models"
+msgstr "Toners por modelos"
+
+#: templates/base.html:70
+msgid "toners_by_state"
+msgstr "Toners por estado"
+
+#: templates/base.html:71
+msgid "toner_by_id"
+msgstr "Toners por identificador"
+
+#: templates/base.html:80
+msgid "identifier"
+msgstr "Identificador"
+
+#: templates/base.html:87
+msgid "registered_user"
+msgstr "Usuario registrado"
+
+#: templates/base.html:91
+msgid "close_session"
+msgstr "Cerrar sesión"

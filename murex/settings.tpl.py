@@ -104,7 +104,7 @@ TEMPLATE_DIRS = (
 )
 
 #LOGIN_REDIRECT_URL = '/app/login/'
-LOGIN_URL='/app/login/'
+LOGIN_URL='/login/'
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 #SITE_ID = 1
 
