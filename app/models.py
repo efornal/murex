@@ -117,8 +117,7 @@ class Toner(models.Model):
 
     @classmethod
     def por_proveedor(cls, proveedor_id):
-        condition = "proveedor_id = %s " % proveedor_id
-        Toner.objects.filter(condition).order_by('marca')
+        return Toner.objects.filter(proveedor_id = proveedor_id).order_by('marca')
 
 @receiver(post_save, sender=Toner)
 def estado_inicial(sender, instance, **kwargs):
