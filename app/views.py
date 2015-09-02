@@ -89,8 +89,8 @@ def toners_por_modelos (request):
     toners_list = Toner.objects.order_by('modelo','identificador')
     paginator = Paginator(toners_list, settings.PAGINATE_BY_PAGE)
     page = request.GET.get('page')
-    states = Estado.objects.order_by('nombre')
-    providers = Proveedor.objects.order_by('nombre')
+#    states = Estado.objects.order_by('nombre')
+#    providers = Proveedor.objects.order_by('nombre')
     
     try:
         toners = paginator.page(page)
@@ -101,9 +101,7 @@ def toners_por_modelos (request):
 
     context = {'toners': toners,
                'changes_class': changes_models_list(toners),
-               'variations_class': variations_models_list(toners),
-               'states': states,
-               'providers': providers }
+               'variations_class': variations_models_list(toners)}
     return render(request, 'toners.html', context)
 
 
@@ -237,8 +235,6 @@ def filtrar_listado (request):
         
     paginator = Paginator(list(toners_list), settings.PAGINATE_BY_PAGE)
     page = request.GET.get('page')
-    states = Estado.objects.order_by('nombre')
-    providers = Proveedor.objects.order_by('nombre')
 
     try:
         toners = paginator.page(page)
@@ -247,8 +243,6 @@ def filtrar_listado (request):
     except EmptyPage:
         toners = paginator.page(paginator.num_pages)
 
-    context = {'toners': toners,
-               'states': states,
-               'providers': providers }
+    context = {'toners': toners }
 
     return render(request, 'toners.html', context)
