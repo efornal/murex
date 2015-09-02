@@ -225,14 +225,16 @@ def login_view(request):
 @login_required
 def filtrar_listado (request):
 
-    if 'state' in request.POST:
+    if 'state' in request.POST and request.POST.get('state'):
         toners_list = Toner.por_estado( request.POST.get('state') )
         logging.info("por estado:%s" % request.POST.get('state') )
 
-    elif 'provider' in request.POST:
+    elif 'provider' in request.POST and request.POST.get('provider'):
         logging.info("por prov:%s" % request.POST.get('provider') )
         toners_list = Toner.por_proveedor( request.POST.get('provider') )
-        
+    else:
+        return redirect('index')
+    
     paginator = Paginator(list(toners_list), settings.PAGINATE_BY_PAGE)
     page = request.GET.get('page')
 

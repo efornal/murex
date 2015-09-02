@@ -45,7 +45,7 @@
       <div class="navbar-header">
         <img class="logo-header" src="{% static 'images/murex.png' %}">
           <a href="{% url 'index' %}" class="navbar-brand" >
-            {{ _('title') }}
+            {{ _('title') }}={{current_state}}
           </a>
           <button class="navbar-toggle" type="button" data-toggle="collapse"
                   data-target="#navbar-main">
@@ -81,9 +81,10 @@
           <form action="{%url 'filtrar_listado'%}" data-remote="true" method="post">
               {% csrf_token %}
                 <select class="form-control" id="select_state" name="state">
-                  <option value='' > ---- </option>
+                  <option value=''> ----  </option>
                   {% for state in states %}
-                  <option value='{{state.id}}'>{{state.nombre}}</option>
+                  <option value='{{state.id}}'
+                          {% ifequal state.id|add:0 current_state|add:0 %} selected="selected" {%endifequal%}>{{state.nombre}}</option>
                   {% endfor %}
                 </select>
             </form>
@@ -94,7 +95,8 @@
                 <select class="form-control" id="select_provider" name="provider">
                   <option value='' selected="selected"> ---- </option>
                   {% for provider in providers %}
-                  <option value='{{provider.id}}' >{{provider.nombre}}</option>
+                  <option value='{{provider.id}}'
+                          {% ifequal provider.id|add:0 current_provider|add:0 %} selected="selected" {%endifequal%}>{{provider.nombre}}</option>
                   {% endfor %}
                 </select>
             </form>

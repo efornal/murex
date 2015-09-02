@@ -122,6 +122,8 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
     "app.processor.states",
     "app.processor.providers",
+    "app.processor.current_state",
+    "app.processor.current_provider",
 )
 
 
