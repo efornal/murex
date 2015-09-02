@@ -39,12 +39,17 @@ td {
     filter: alpha(opacity=30);
 }
 
-.navbar-nav {
-    margin: 0px 0px 0px 100px;
-}
-
 .separator {
     border-style: solid !important;
     border-color: #F9F9F9;
     border-width: 5px 0px 0px 0px !important;
+}
+
+.navbar-nav {
+    margin: 0px;
+}
+
+.navbar-brand {
+    float: none;
+    vertical-align: middle;
 }

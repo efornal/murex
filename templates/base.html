@@ -44,7 +44,9 @@
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="navbar-header">
         <img class="logo-header" src="{% static 'images/murex.png' %}">
-          <a href="{% url 'index' %}" class="navbar-brand" style="margin-right:50px;">{{ _('title') }}</a>
+          <a href="{% url 'index' %}" class="navbar-brand" >
+            {{ _('title') }}
+          </a>
           <button class="navbar-toggle" type="button" data-toggle="collapse"
                   data-target="#navbar-main">
             <span class="icon-bar"></span>
