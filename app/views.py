@@ -5,7 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
-from app.models import Toner, Estado, EstadoToner
+from app.models import Toner, Estado, EstadoToner, Proveedor
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import logging
 from django.conf import settings
@@ -89,6 +89,9 @@ def toners_por_modelos (request):
     toners_list = Toner.objects.order_by('modelo','identificador')
     paginator = Paginator(toners_list, settings.PAGINATE_BY_PAGE)
     page = request.GET.get('page')
+    states = Estado.objects.order_by('nombre')
+    providers = Proveedor.objects.order_by('nombre')
+    
     try:
         toners = paginator.page(page)
     except PageNotAnInteger:
@@ -97,8 +100,10 @@ def toners_por_modelos (request):
         toners = paginator.page(paginator.num_pages)
 
     context = {'toners': toners,
-               'changes_class':changes_models_list(toners),
-               'variations_class':variations_models_list(toners),}
+               'changes_class': changes_models_list(toners),
+               'variations_class': variations_models_list(toners),
+               'states': states,
+               'providers': providers }
     return render(request, 'toners.html', context)
 
 
@@ -219,3 +224,31 @@ def login_view(request):
     else:
         return render(request, 'login.html')
 
+@login_required
+def filtrar_listado (request):
+
+    if 'state' in request.POST:
+        toners_list = Toner.por_estado( request.POST.get('state') )
+        logging.info("por estado:%s" % request.POST.get('state') )
+
+    elif 'provider' in request.POST:
+        logging.info("por prov:%s" % request.POST.get('provider') )
+        toners_list = Toner.por_proveedor( request.POST.get('provider') )
+        
+    paginator = Paginator(list(toners_list), settings.PAGINATE_BY_PAGE)
+    page = request.GET.get('page')
+    states = Estado.objects.order_by('nombre')
+    providers = Proveedor.objects.order_by('nombre')
+
+    try:
+        toners = paginator.page(page)
+    except PageNotAnInteger:
+        toners = paginator.page(1)
+    except EmptyPage:
+        toners = paginator.page(paginator.num_pages)
+
+    context = {'toners': toners,
+               'states': states,
+               'providers': providers }
+
+    return render(request, 'toners.html', context)

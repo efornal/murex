@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script type="text/javascript" src="{% static 'application.js' %}"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
@@ -55,30 +56,50 @@
       {% if user.is_authenticated %}
       <div class="navbar-collapse collapse" id="navbar-main">
         <ul class="nav navbar-nav navbar-left">
-          <li>
-            <a href="{% url 'toners_por_modelos' %}"
-               title="Listado de todos los toners" >Toners</a>
-          </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-               role="button" aria-expanded="false">{{ _('lists') }} <span class="caret"></span></a>
+               role="button" aria-expanded="false">{{ _('toners') }} <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="{% url 'toners_por_modelos' %}">{{ _('toners_by_models') }}</a></li>
               <li><a href="{% url 'toners_por_estados' %}">{{ _('toners_by_state') }}</a></li>
               <li><a href="{% url 'toners' %}">{{ _('toner_by_id') }}</a></li>
             </ul>
           </li>
+          <li>
+            <form method="post" action="{% url 'search' %}"
+                  class="navbar-form navbar-left" id="search_form">
+              {% csrf_token %}
+                <input class="form-control" name="search_field"
+                       placeholder="{{ _('identifier') }}" type="text"
+                       value="{{ text_search }}">&nbsp;&nbsp;
+                <i class="glyphicon glyphicon-search" style="right:40px;"></i>
+            </form>
+          </li>
+          <li style="margin:6px 50px 0px -20px; ">
+          <form action="{%url 'filtrar_listado'%}" data-remote="true" method="post">
+              {% csrf_token %}
+                <select class="form-control" id="select_state" name="state">
+                  <option value='' > ---- </option>
+                  {% for state in states %}
+                  <option value='{{state.id}}'>{{state.nombre}}</option>
+                  {% endfor %}
+                </select>
+            </form>
+          </li>
+          <li style="margin:6px 50px 0px -20px; ">
+          <form action="{%url 'filtrar_listado'%}" data-remote="true" method="post">
+              {% csrf_token %}
+                <select class="form-control" id="select_provider" name="provider">
+                  <option value='' selected="selected"> ---- </option>
+                  {% for provider in providers %}
+                  <option value='{{provider.id}}' >{{provider.nombre}}</option>
+                  {% endfor %}
+                </select>
+            </form>
+          </li>
+
         </ul>
-        <form method="post" action="{% url 'search' %}"
-              class="navbar-form navbar-left" id="search_form">
-          {% csrf_token %}
-          <div class="form-group">
-            <input class="form-control" name="search_field"
-                   placeholder="{{ _('identifier') }}" type="text"
-                   value="{{ text_search }}">&nbsp;&nbsp;
-            <i class="glyphicon glyphicon-search" style="right:40px;"></i> 
-          </div>
-        </form>
+
         <ul class="nav navbar-nav navbar-right">
           <li>
             <a href="#" title="{{ _('registered_user') }}">

@@ -25,121 +25,121 @@ msgstr "Murex"
 
 #: templates/base.html:70
 msgid "lists"
-msgstr ""
+msgstr "Lists"
 
 #: templates/base.html:72
 msgid "toners_by_models"
-msgstr ""
+msgstr "By models"
 
 #: templates/base.html:73
 msgid "toners_by_state"
-msgstr ""
+msgstr "By state"
 
 #: templates/base.html:74
 msgid "toner_by_id"
-msgstr ""
+msgstr "By id"
 
 #: templates/base.html:83 templates/toner.html:33 templates/toners.html:28
 msgid "identifier"
-msgstr ""
+msgstr "identifier"
 
 #: templates/base.html:90
 msgid "registered_user"
-msgstr ""
+msgstr "Registered user"
 
 #: templates/base.html:94
 msgid "close_session"
-msgstr ""
+msgstr "Close session"
 
 #: templates/login.html:18
 msgid "home_login"
-msgstr ""
+msgstr "Home login"
 
 #: templates/login.html:23
 msgid "user"
-msgstr ""
+msgstr "User"
 
 #: templates/login.html:29
 msgid "password"
-msgstr ""
+msgstr "Password"
 
 #: templates/login.html:35
 msgid "log_in"
-msgstr ""
+msgstr "Log in"
 
 #: templates/toner.html:41 templates/toner_detail.html:26
 #: templates/toners.html:31
 msgid "state"
-msgstr ""
+msgstr "State"
 
 #: templates/toner.html:44
 msgid "pending"
-msgstr ""
+msgstr "Pending"
 
 #: templates/toner.html:50
 msgid "refills"
-msgstr ""
+msgstr "Refills"
 
 #: templates/toner.html:60 templates/toners.html:30
 msgid "trademark"
-msgstr ""
+msgstr "Trademark"
 
 #: templates/toner.html:66 templates/toners.html:29
 msgid "model"
-msgstr ""
+msgstr "Model"
 
 #: templates/toner.html:76
 msgid "printer"
-msgstr ""
+msgstr "Printer"
 
 #: templates/toner.html:82
 msgid "supplier"
-msgstr ""
+msgstr "Supplier"
 
 #: templates/toner.html:92
 msgid "description"
-msgstr ""
+msgstr "Description"
 
 #: templates/toner.html:100
 msgid "updated"
-msgstr ""
+msgstr "Updated"
 
 #: templates/toner_detail.html:18
 msgid "detail_for"
-msgstr ""
+msgstr "Detail for"
 
 #: templates/toner_detail.html:27
 msgid "starting_date"
-msgstr ""
+msgstr "Starting date"
 
 #: templates/toner_detail.html:28
 msgid "ending_date"
-msgstr ""
+msgstr "Ending date"
 
 #: templates/toner_detail.html:45 templates/toners.html:62
 msgid "without_results"
-msgstr ""
+msgstr "Without results"
 
 #: templates/toner_detail.html:57 templates/toners.html:74
 msgid "previous"
-msgstr ""
+msgstr "Previous"
 
 #: templates/toner_detail.html:61 templates/toners.html:78
 msgid "page"
-msgstr ""
+msgstr "Page"
 
 #: templates/toner_detail.html:61 templates/toners.html:78
 msgid "of"
-msgstr ""
+msgstr "of"
 
 #: templates/toner_detail.html:65 templates/toners.html:82
 msgid "next"
-msgstr ""
+msgstr "Next"
 
 #: templates/toners.html:19
 msgid "toners"
-msgstr ""
+msgstr "Toners"
 
 #: templates/toners.html:32
 msgid "detail"
-msgstr ""
+msgstr "Detail"

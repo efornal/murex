@@ -105,6 +105,20 @@ class Toner(models.Model):
         " ORDER BY e.estado_id ASC"
         return cls.objects.raw( query )
 
+    @classmethod
+    def por_estado(cls, estado_id):
+        query = "SELECT t.id, t.identificador,e.estado_id,e.fecha_inicio" \
+        " FROM toners as t LEFT OUTER JOIN estados_toners as e ON ( t.id = e.toner_id )" \
+        " WHERE e.id = (select id from estados_toners " \
+                       "where toner_id = t.id order by fecha_inicio desc limit 1)" \
+                " AND e.id = %s " \
+        " ORDER BY e.estado_id ASC" % estado_id
+        return cls.objects.raw( query )
+
+    @classmethod
+    def por_proveedor(cls, proveedor_id):
+        condition = "proveedor_id = %s " % proveedor_id
+        Toner.objects.filter(condition).order_by('marca')
 
 @receiver(post_save, sender=Toner)
 def estado_inicial(sender, instance, **kwargs):
