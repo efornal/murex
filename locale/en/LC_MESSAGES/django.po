@@ -41,7 +41,7 @@ msgstr "By id"
 
 #: templates/base.html:83 templates/toner.html:33 templates/toners.html:28
 msgid "identifier"
-msgstr "identifier"
+msgstr "Identifier"
 
 #: templates/base.html:90
 msgid "registered_user"
