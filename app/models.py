@@ -110,9 +110,9 @@ class Toner(models.Model):
         query = "SELECT t.id, t.identificador,e.estado_id,e.fecha_inicio" \
         " FROM toners as t LEFT OUTER JOIN estados_toners as e ON ( t.id = e.toner_id )" \
         " WHERE e.id = (select id from estados_toners " \
-                       "where toner_id = t.id  AND e.id = %s order by fecha_inicio desc limit 1)" \
-                " AND e.id = %s " \
-        " ORDER BY e.estado_id ASC" % (estado_id,estado_id)
+                       "where toner_id = t.id  order by fecha_inicio desc limit 1)" \
+                " AND e.estado_id = %s " \
+        " ORDER BY e.estado_id ASC" % (estado_id)
         return cls.objects.raw( query )
 
     @classmethod
