@@ -190,6 +190,10 @@ CSS_SEPARATOR_COLOR2 = 'warning'
 PAGINATE_BY_PAGE = 25
 
 
+SUIT_CONFIG = {
+    'ADMIN_NAME': _('title')
+}
+
 
 # loggin querys in develompent
 # if DEBUG:
