@@ -1,5 +1,6 @@
 from django import template
 from django.template.defaultfilters import stringfilter
+from django.conf import settings
 import logging
 
 register = template.Library()
@@ -44,4 +45,4 @@ def icon_by_status(arg, state):
 @stringfilter
 def icon_by_status_tag(arg, state):
     icon = icon_by_status(None,state)
-    return ("<img src='/static/images/%s' \>"  % icon)
+    return ("<img src='%s%s/%s' \>"  % ( settings.STATIC_URL, 'images', icon) )
