@@ -19,6 +19,33 @@ sudo pip install django-bootstrap-themes==3.1.2
 sudo pip install django-auth-ldap==1.2.6
 ```
 
+### App configuration for production
+```bash
+git clone https://github.com/efornal/murex.git
+
+cd murex
+cp murex/settings.tpl.py murex/settings.py
+
+mkdir static_production
+
+configure:
+STATIC_URL = '/murex/static_production/'
+STATIC_ROOT = os.path.join(PROJECT_DIR, '/srv/murex/murex/static_production')
+STATICFILES_DIRS = (
+        '/srv/murex/static',
+)
+
+python manage.py syncdb
+python manage.py migrate
+django-admin compilemessages
+
+the first time:
+python manage.py loaddata estados
+
+python manage.py collectstatic
+```
+
+
 ### Postgres configuration
 ```bash
 createdb murex_db;
@@ -31,28 +58,17 @@ hostssl  murex_db     murex_owner        ::1/128                 password
 psql -h localhost -U murex_owner -p 5432 -d murex_db
 ```
 
-### App configuration
+
+### Apache configuration
+En /etc/apache2/conf.d/django
 ```bash
-git clone https://github.com/efornal/murex.git
+ WSGIScriptAlias /murex /srv/murex/murex/wsgi.py
+ WSGIPythonPath /srv/murex/
 
-cd murex
-cp murex/settings.tpl.py murex/settings.py
-
-mkdir static_production
-
-habilitar:
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
-
-python manage.py syncdb
-python manage.py migrate
-python manage.py loaddata estados
-django-admin compilemessages
-
-python manage.py collectstatic
+ Alias /murex/static /srv/murex/murex/static_production/
+ <Directory /srv/murex/murex>
+        <Files wsgi.py>
+                 Allow from all
+         </Files>
+ </Directory>
 ```
-
-
-
