@@ -32,14 +32,9 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
-
-# set static path for production
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
+ALLOWED_HOSTS = ['*']
 
 # LDAP Configuration ==============/
-
 # LDAP server
 LDAP_SERVER = 'ldap://host_ldap:port'
 
@@ -149,6 +144,8 @@ LOCALE_PATHS = (
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
+# set static path for production
+#STATIC_ROOT = '/srv/murex/shared/static'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
@@ -175,8 +172,6 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     "app.processor.current_state",
     "app.processor.current_provider",
 )
-
-
 
 
 # nombre de la clase css usada como separador en listados
