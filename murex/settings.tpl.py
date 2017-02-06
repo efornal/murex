@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
 from django.utils.translation import ugettext_lazy as _
 LANGUAGE_CODE = 'es'
@@ -29,8 +30,6 @@ SECRET_KEY = 'e!y00g3a(%!+!7yr5)ese+fc==68t*%it$*b&axr=%hu*4c6x2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -153,26 +152,28 @@ STATICFILES_DIRS = (
 )
 # If the user isn't logged in, redirect to
 #LOGIN_URL = '/login/'
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates'),
-)
 
 #LOGIN_REDIRECT_URL = '/app/login/'
 LOGIN_URL='/login/'
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 #SITE_ID = 1
 
-
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
-
-TEMPLATE_CONTEXT_PROCESSORS = TCP + (
-    'django.core.context_processors.request',
-    "app.processor.states",
-    "app.processor.providers",
-    "app.processor.current_state",
-    "app.processor.current_provider",
-)
-
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(SETTINGS_PATH, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'debug': True,
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 # nombre de la clase css usada como separador en listados
 CSS_SEPARATOR_NAME = 'separator'
