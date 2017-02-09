@@ -3,7 +3,10 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
+
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
+
 from django.shortcuts import redirect
 from app.models import Toner, Estado, EstadoToner, Proveedor
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -85,6 +88,7 @@ def variations_states_list(toners):
 
   
 @login_required
+@staff_member_required
 def toners_por_modelos (request):
     toners_list = Toner.objects.order_by('modelo','identificador')
     paginator = Paginator(toners_list, settings.PAGINATE_BY_PAGE)
@@ -106,6 +110,7 @@ def toners_por_modelos (request):
 
 
 @login_required
+@staff_member_required
 def toners_por_estados (request):
     toners_list = Toner.por_estados()
     paginator = Paginator(list(toners_list), settings.PAGINATE_BY_PAGE)
@@ -124,6 +129,7 @@ def toners_por_estados (request):
 
     
 @login_required
+@staff_member_required
 def toners(request):
     last_model = ''
     toners_list = Toner.objects.order_by('identificador','modelo')
@@ -143,6 +149,7 @@ def toners(request):
     return render(request, 'toners.html', context)
 
 @login_required
+@staff_member_required
 def toner_detail(request,toner_id):
     toner = Toner.objects.get(id=toner_id)
     status_list = EstadoToner.objects.filter(toner_id=toner_id).order_by('-fecha_inicio')
@@ -163,6 +170,7 @@ def toner_detail(request,toner_id):
 
 
 @login_required
+@staff_member_required
 def search(request):
     text_search = request.POST['search_field']
     toners_list = Toner.objects.filter(identificador__contains=text_search).order_by('identificador')
@@ -180,12 +188,14 @@ def search(request):
 
 
 @login_required
+@staff_member_required
 def logout_view(request):
     logout(request)
     return redirect('toners')
 
 
 @login_required
+@staff_member_required
 def toner(request, toner_id):
     if request.method == 'GET':
         toner = Toner.objects.get(id=toner_id)
@@ -223,6 +233,7 @@ def login_view(request):
         return render(request, 'login.html')
 
 @login_required
+@staff_member_required
 def filtrar_listado (request):
 
     if 'state' in request.POST and request.POST.get('state'):
