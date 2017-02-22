@@ -121,6 +121,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'murex_db',
+        'USER': 'murex_user',
+        'PASSWORD': 'user',
+        'PORT': '5432',        
+        'HOST': 'localhost',
+    },
+    'murex_owner': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'murex_db',
         'USER': 'murex_owner',
         'PASSWORD': 'owner',
         'PORT': '5432',        

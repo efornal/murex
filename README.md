@@ -35,8 +35,7 @@ STATICFILES_DIRS = (
         '/srv/murex/static',
 )
 
-python manage.py syncdb
-python manage.py migrate
+python manage.py migrate --database=murex_owner
 django-admin compilemessages
 
 the first time:
@@ -50,6 +49,11 @@ python manage.py collectstatic
 ```bash
 createdb murex_db;
 createuser murex_owner -P;
+createuser murex_user  -P;
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON ALL TABLES IN SCHEMA public TO murex_user;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO murex_user;
+
 
 /etc/postgresql/9.3/main/pg_hba.conf
 hostssl  murex_db     murex_owner        ::1/128                 password
