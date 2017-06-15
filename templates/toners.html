@@ -1,87 +1,74 @@
 {% extends "base.html" %}
-
+{% load i18n %}
+{% load application_filters %}
 {% block content %}
 
-{% if form.errors %}
-  {% for errors in form.errors %}
-  <p>{{ errors }}</p>
-  {% endfor %}
-{% endif %}
-
-{% load application_filters %}
-
-
-<div class="bs-docs-section">
-
-  <div class="row">
-    <div class="col-lg-12">
-
-      <div class="bs-component">
-        <div class="page-header">
-          <h4>{{ _('toners') }}</h4>
-        </div>
-
-        {% if toners %}
-        <table class="table table-striped table-hover " cellpadding="100" >
-          <thead>
-            <tr>
-              <th>{{ _('identifier') }}</th>
-              <th>{{ _('model') }}</th>
-              <th>{{ _('trademark') }}</th>
-              <th>{{ _('state') }}</th>
-              <th>{{ _('detail') }}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for toner in toners %}
-            {% with variation_class=variations_class.pop %}
-            <tr class="{% if changes_class == None %}{{ 'warning' }}{% endif %}{% with change_class=changes_class.pop %}{{ change_class }}{% endwith %}">
-              <td class="{{variation_class}}">
-                <a href="{% url 'toner' toner.id %}">{{ toner.identificador }}</a>
-              </td>
-              <td class="{{variation_class}}">{{ toner.modelo }}</td>
-              <td class="{{variation_class}}">{{ toner.marca }}</td>
-              <td class="{{variation_class}}">
-                {{ class|icon_by_status_tag:toner.ultimo_estado.id | safe }}
-                {{ toner.ultimo_estado.nombre }}
-              </td>
-              <td class="{{variation_class}}" >
-                <div class="toner-detail">
-                  <a  href="{% url 'toner_detail' toner.id %}"
-                      title="Detalles estados {{ toner.identificador }}">
-                     <i class="glyphicon glyphicon-list"></i>
-                  </a>
-                </div>
-              </td>
-            </tr>
-              {% endwith %}
-            {% endfor %}
-          </tbody>
-        </table>
-        {% else %}
-          <p>{{ _('without_results') }}</p>
-        {% endif %}
-        
-      </div>
-      <ul class="pager">
-        {% if toners.has_previous %}
-        <li class="previous"><a href="?page={{ toners.previous_page_number }}">← {{ _('previous') }}</a></li>
-        {% endif %}
-        {% if toners.paginator.num_pages > 1 %}
-        <li>
-          &nbsp; {{ _('page') }} {{ toners.number }} {{ _('of') }} {{ toners.paginator.num_pages }} &nbsp;
-        </li>
-        {% endif %}
-        {% if toners.has_next %}
-        <li class="next"><a href="?page={{ toners.next_page_number }}">{{ _('next') }} →</a></li>
-        {% endif %}
-      </ul>
-    </div>
+<div class="bs-component">
+  <div class="page-header">
+    <h4>{{ _('toner_detail') }}</h4>
   </div>
+</div>
+
+<div class="well bs-component">
+
+  {% if toners %}
+  <table class="table table-striped table-hover " cellpadding="100" >
+    <thead>
+      <tr>
+        <th>{{ _('identifier') }}</th>
+        <th>{{ _('model') }}</th>
+        <th>{{ _('trademark') }}</th>
+        <th>{{ _('state') }}</th>
+        <th>{{ _('detail') }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for toner in toners %}
+      {% with variation_class=variations_class.pop %}
+      <tr class="{% if changes_class == None %}{{ 'warning' }}{% endif %}{% with change_class=changes_class.pop %}{{ change_class }}{% endwith %}">
+        <td class="{{variation_class}}">
+          <a href="{% url 'toner' toner.id %}">{{ toner.identificador }}</a>
+        </td>
+        <td class="{{variation_class}}">{{ toner.modelo }}</td>
+        <td class="{{variation_class}}">{{ toner.marca }}</td>
+        <td class="{{variation_class}}">
+          {{ class|icon_by_status_tag:toner.ultimo_estado.id | safe }}
+          {{ toner.ultimo_estado.nombre }}
+        </td>
+        <td class="{{variation_class}}" >
+          <div class="toner-detail">
+            <a  href="{% url 'toner_detail' toner.id %}"
+                title="Detalles estados {{ toner.identificador }}">
+              <i class="glyphicon glyphicon-list"></i>
+            </a>
+          </div>
+        </td>
+      </tr>
+      {% endwith %}
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>{{ _('without_results') }}</p>
+  {% endif %}
+x  
+
+  <ul class="pager">
+    {% if toners.has_previous %}
+    <li class="previous"><a href="?page={{ toners.previous_page_number }}">← {{ _('previous') }}</a></li>
+    {% endif %}
+    {% if toners.paginator.num_pages > 1 %}
+    <li>
+      &nbsp; {{ _('page') }} {{ toners.number }} {{ _('of') }} {{ toners.paginator.num_pages }} &nbsp;
+    </li>
+    {% endif %}
+    {% if toners.has_next %}
+    <li class="next"><a href="?page={{ toners.next_page_number }}">{{ _('next') }} →</a></li>
+    {% endif %}
+  </ul>
 
   <br>
 
-  
 </div>
 
 {% endblock %}

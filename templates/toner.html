@@ -1,112 +1,93 @@
 {% extends "base.html" %}
-
+{% load i18n %}
+{% load application_filters %}
 {% block content %}
 
-{% if form.errors %}
-  {% for errors in form.errors %}
-  <p>{{ errors }}</p>
-  {% endfor %}
-{% endif %}
+<div class="bs-component">
+  <div class="page-header">
+    <h4>{{ _('toner_detail') }}</h4>
+  </div>
+</div>
 
-{% load application_filters %}
+<div class="well bs-component">
 
-<div class="bs-docs-section">
-  <div class="row">
-    <div class="col-lg-12">
-       <div class="bs-component">
-        <div class="page-header">
-          <h4>{{ _('toner_detail') }}</h4>
+  <form class="form-horizontal" action="" method="post">
+    {% csrf_token %}
+    <input type='hidden' name="id" value="{{ toner.id }}" />
+    <fieldset>
+      <legend>{{ _('toner') }}: {{ toner.identificador }}</legend>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="textinput">{{ _('identifier') }}</label>
+        <div class="col-sm-4">
+          <input class="form-control" readonly="true" type="text" name="identificador"
+                 id="identificador" value="{{ toner.identificador }}"/>
         </div>
-       </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="well bs-component">
-
-        <form class="form-horizontal" action="" method="post">
-          {% csrf_token %}
-          <input type='hidden' name="id" value="{{ toner.id }}" />
-          <fieldset>
-            <legend>{{ _('toner') }}: {{ toner.identificador }}</legend>
-
-            <div class="form-group">
-              <label class="col-sm-2 control-label" for="textinput">{{ _('identifier') }}</label>
-              <div class="col-sm-4">
-                <input class="form-control" readonly="true" type="text" name="identificador"
-                       id="identificador" value="{{ toner.identificador }}"/>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="select" class="col-sm-2 control-label">{{ _('state') }}</label>
-              <div class="col-sm-4">
-                <select class="form-control" id="estado_id" name="estado_id">
-                  <option value='0'>-- {{ _('pending') }} --</option>
-                  {% for estado in estados %}
-                  <option value="{{estado.id}}" {% if estado.id == estado_actual.estado_id %}selected="selected"{% endif %}> {{estado.nombre}}</option>
-                  {% endfor %}
-                </select>
-              </div>
-              <label class="col-sm-2 control-label" for="textinput">{{ _('refills') }}</label>
-              <div class="col-sm-4">
-                <input class="form-control" readonly="true" type="text" name="modelo"
-                       id="modelo" value="{{ toner.recargas }}" />
-
-              </div>
-            </div>
-
-            
-            <div class="form-group">
-              <label class="col-sm-2 control-label" for="textinput">{{ _('trademark') }}</label>
-              <div class="col-sm-4">
-                <input class="form-control" readonly="true" type="text" name="marca"
-                       id="marca" value="{{ toner.marca }}" />
-              </div>
-
-              <label class="col-sm-2 control-label" for="textinput">{{ _('model') }}</label>
-              <div class="col-sm-4">
-                <input class="form-control" readonly="true" type="text" name="modelo"
-                       id="modelo" value="{{ toner.modelo }}" />
-
-              </div>
-            </div>
-
-
-            <div class="form-group">
-              <label class="col-sm-2 control-label" for="textinput">{{ _('printer') }}</label>
-              <div class="col-sm-4">
-                <input class="form-control" readonly="true" type="text" name="impresora"
-                       id="impresora" value="{{ toner.impresora.nombre }}" />
-              </div>
-
-              <label class="col-sm-2 control-label" for="textinput">{{ _('supplier') }}</label>
-              <div class="col-sm-4">
-                <input class="form-control" readonly="true" type="text" name="proveedor"
-                       id="proveedor" value="{{ toner.proveedor.nombre }}" />
-              </div>
-            </div>
-
-
-            
-            <div class="form-group">
-              <label for="descripcion" class="col-sm-2 control-label">{{ _('description') }}</label>
-              <div class="col-sm-10">
-                <textarea class="form-control" rows="3"  name="descripcion"
-                          id="descripcion">{{ toner.descripcion }}</textarea>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-10 col-sm-offset-2">
-                <button type="submit" class="btn btn-primary">{{ _('updated') }}</button>
-              </div>
-            </div>
-          </fieldset>
-        </form>
       </div>
-    </div>
-  </div>
+
+      <div class="form-group">
+        <label for="select" class="col-sm-2 control-label">{{ _('state') }}</label>
+        <div class="col-sm-4">
+          <select class="form-control" id="estado_id" name="estado_id">
+            <option value='0'>-- {{ _('pending') }} --</option>
+            {% for estado in estados %}
+            <option value="{{estado.id}}" {% if estado.id == estado_actual.estado_id %}selected="selected"{% endif %}> {{estado.nombre}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <label class="col-sm-2 control-label" for="textinput">{{ _('refills') }}</label>
+        <div class="col-sm-4">
+          <input class="form-control" readonly="true" type="text" name="modelo"
+                 id="modelo" value="{{ toner.recargas }}" />
+
+        </div>
+      </div>
+
+      
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="textinput">{{ _('trademark') }}</label>
+        <div class="col-sm-4">
+          <input class="form-control" readonly="true" type="text" name="marca"
+                 id="marca" value="{{ toner.marca }}" />
+        </div>
+
+        <label class="col-sm-2 control-label" for="textinput">{{ _('model') }}</label>
+        <div class="col-sm-4">
+          <input class="form-control" readonly="true" type="text" name="modelo"
+                 id="modelo" value="{{ toner.modelo }}" />
+
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="textinput">{{ _('printer') }}</label>
+        <div class="col-sm-4">
+          <input class="form-control" readonly="true" type="text" name="impresora"
+                 id="impresora" value="{{ toner.impresora.nombre }}" />
+        </div>
+
+        <label class="col-sm-2 control-label" for="textinput">{{ _('supplier') }}</label>
+        <div class="col-sm-4">
+          <input class="form-control" readonly="true" type="text" name="proveedor"
+                 id="proveedor" value="{{ toner.proveedor.nombre }}" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="descripcion" class="col-sm-2 control-label">{{ _('description') }}</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" rows="3"  name="descripcion"
+                    id="descripcion">{{ toner.descripcion }}</textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+          <button type="submit" class="btn btn-primary">{{ _('updated') }}</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
 </div>
 
 {% endblock %}
