@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.conf.urls import url
 from app import views
 
@@ -11,6 +12,7 @@ urlpatterns = [
     url(r'^toner/(\d+)/$', views.toner, name='toner'),
     url(r'^search/',views.search, name='search'),
     url(r'^toner/(\d+)/detail/$', views.toner_detail, name='toner_detail'),
+    url(r'^lang/(?P<lang>\w+)/$', views.set_language, name='set_language'),
     url(r'^$', views.index, name='index'),
 ]
 

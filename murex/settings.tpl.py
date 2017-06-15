@@ -99,6 +99,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'jquery',
+    'jquery_ui',
+    'bootstrap_ui',
     'bootstrap_themes',
     'app',
     'django.templatetags',
@@ -114,6 +117,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'app.middleware.ForceLangMiddleware',
 )
 
 ROOT_URLCONF = 'murex.urls'

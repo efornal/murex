@@ -15,6 +15,16 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 from django.utils import translation
 
+
+def set_language(request, lang='es'):
+    if 'lang' in request.GET:
+        lang = request.GET['lang']
+    translation.activate(lang)
+    request.session[translation.LANGUAGE_SESSION_KEY] = lang
+    logging.info("Language changed by the user to '{}'".format(lang))
+    return redirect('index')
+
+
 @login_required
 def index(request):
     return redirect('toners_por_modelos')
