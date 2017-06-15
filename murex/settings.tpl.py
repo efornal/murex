@@ -10,7 +10,11 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import logging
 import os
+import ldap
+from django.utils.translation import ugettext_lazy as _
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 APPLICATION_NAME= "Murex"
@@ -49,7 +53,7 @@ LDAP_DN = 'dc=domain,dc=edu,dc=ar'
 
 # Organizational Unit for Person
 LDAP_PEOPLE = 'People'
-
+LDAP_PEOPLE = 'Group'
 # =================================/
 
 # =================================\
@@ -201,6 +205,36 @@ SUIT_CONFIG = {
     'ADMIN_NAME': _('title')
 }
 
+# =================================\
+# django ldap configuration
+
+import ldap
+from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
+
+import logging
+logger = logging.getLogger('django_auth_ldap')
+logger.addHandler(logging.StreamHandler())
+logger.setLevel(logging.DEBUG)
+
+
+AUTH_LDAP_SERVER_URI = LDAP_SERVER
+
+#AUTH_LDAP_BIND_DN = "cn=%s,%s" % ( LDAP_USER_NAME, LDAP_DN )
+#AUTH_LDAP_BIND_PASSWORD = LDAP_USER_PASS
+
+AUTH_LDAP_USER_SEARCH = LDAPSearch("ou=%s,%s" % (LDAP_PEOPLE,LDAP_DN),
+                                   ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
+AUTH_LDAP_USER_ATTR_MAP = {
+    "first_name": "givenName",
+    "last_name": "sn",
+    "email": "mail"
+}
+
+AUTHENTICATION_BACKENDS = (
+    'django_auth_ldap.backend.LDAPBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+# =================================/
 
 # loggin querys in develompent
 # if DEBUG:
