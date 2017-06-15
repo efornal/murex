@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-30 12:54-0300\n"
+"POT-Creation-Date: 2017-06-15 09:50-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,43 +12,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: murex/settings.py:20 murex/settings.tpl.py:18
+#: murex/settings.py:27 murex/settings.tpl.py:26 templates/base.html:97
+#: templates/base.html:102
 msgid "Spanish"
 msgstr "Español"
 
-#: murex/settings.py:21 murex/settings.tpl.py:19
+#: murex/settings.py:28 murex/settings.tpl.py:27 templates/base.html:98
+#: templates/base.html:104
 msgid "English"
 msgstr "Inglés"
 
-#: templates/base.html:16 templates/base.html.py:52
+#: murex/settings.py:161 murex/settings.tpl.py:209
 msgid "title"
 msgstr "Murex"
 
-#: templates/base.html:70
-msgid "lists"
-msgstr "Listados"
+#: templates/base.html:49 templates/toners.html:21
+msgid "toners"
+msgstr "Toners"
 
-#: templates/base.html:72
+#: templates/base.html:51
 msgid "toners_by_models"
 msgstr "por modelos"
 
-#: templates/base.html:73
+#: templates/base.html:52
 msgid "toners_by_state"
 msgstr "por estado"
 
-#: templates/base.html:74
+#: templates/base.html:53
 msgid "toner_by_id"
 msgstr "por identificador"
 
-#: templates/base.html:83 templates/toner.html:33 templates/toners.html:28
+#: templates/base.html:61 templates/toner.html:35 templates/toners.html:28
 msgid "identifier"
 msgstr "Identificador"
 
-#: templates/base.html:90
+#: templates/base.html:95
+msgid "language"
+msgstr "idioma"
+
+#: templates/base.html:109
 msgid "registered_user"
 msgstr "Usuario registrado"
 
-#: templates/base.html:94
+#: templates/base.html:113
 msgid "close_session"
 msgstr "Cerrar sesión"
 
@@ -68,46 +74,52 @@ msgstr "Contraseña"
 msgid "log_in"
 msgstr "Iniciar sesión"
 
-#: templates/toner.html:41 templates/toner_detail.html:26
+#: templates/toner.html:18
+msgid "toner_detail"
+msgstr "Detalle de toner"
+
+#: templates/toner.html:32
+msgid "toner"
+msgstr "Toner"
+
+#: templates/toner.html:43 templates/toner_detail.html:26
 #: templates/toners.html:31
 msgid "state"
 msgstr "Estado"
 
-#: templates/toner.html:44
-#, fuzzy
-#| msgid "ending_date"
+#: templates/toner.html:46
 msgid "pending"
 msgstr "Fecha fin"
 
-#: templates/toner.html:50
+#: templates/toner.html:52
 msgid "refills"
 msgstr "Recargas"
 
-#: templates/toner.html:60 templates/toners.html:30
+#: templates/toner.html:62 templates/toners.html:30
 msgid "trademark"
 msgstr "Marca"
 
-#: templates/toner.html:66 templates/toners.html:29
+#: templates/toner.html:68 templates/toners.html:29
 msgid "model"
 msgstr "Modelo"
 
-#: templates/toner.html:76
+#: templates/toner.html:78
 msgid "printer"
 msgstr "Impresora"
 
-#: templates/toner.html:82
+#: templates/toner.html:84
 msgid "supplier"
 msgstr "Proveedor"
 
-#: templates/toner.html:92
+#: templates/toner.html:94
 msgid "description"
 msgstr "Descripción"
 
-#: templates/toner.html:100
+#: templates/toner.html:102
 msgid "updated"
 msgstr "Actualizar"
 
-#: templates/toner_detail.html:18
+#: templates/toner_detail.html:19
 msgid "detail_for"
 msgstr "Detalle de estados para"
 
@@ -123,26 +135,25 @@ msgstr "Fecha fin"
 msgid "without_results"
 msgstr "No se encontraron resultados"
 
-#: templates/toner_detail.html:57 templates/toners.html:74
+#: templates/toner_detail.html:57 templates/toners.html:68
 msgid "previous"
 msgstr "Anterior"
 
-#: templates/toner_detail.html:61 templates/toners.html:78
+#: templates/toner_detail.html:61 templates/toners.html:72
 msgid "page"
 msgstr "Página"
 
-#: templates/toner_detail.html:61 templates/toners.html:78
+#: templates/toner_detail.html:61 templates/toners.html:72
 msgid "of"
 msgstr "de"
 
-#: templates/toner_detail.html:65 templates/toners.html:82
+#: templates/toner_detail.html:65 templates/toners.html:76
 msgid "next"
 msgstr "Siguiente"
-
-#: templates/toners.html:19
-msgid "toners"
-msgstr "Toners"
 
 #: templates/toners.html:32
 msgid "detail"
 msgstr "Detalle"
+
+#~ msgid "lists"
+#~ msgstr "Listados"
