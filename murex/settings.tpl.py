@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for murex project.
 
@@ -12,6 +13,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
+APPLICATION_NAME= "Murex"
+APPLICATION_DESC= "Toner management"
 
 from django.utils.translation import ugettext_lazy as _
 LANGUAGE_CODE = 'es'

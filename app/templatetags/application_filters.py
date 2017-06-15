@@ -5,6 +5,26 @@ import logging
 
 register = template.Library()
 
+@register.filter
+def application_title(value):
+    title = ''
+    if value:
+        title = value
+    elif settings.APPLICATION_NAME:
+        title = settings.APPLICATION_NAME
+
+    return title
+
+@register.filter
+def application_subtitle(value):
+    subtitle = ''
+    if value:
+        subtitle = value
+    elif settings.APPLICATION_DESC:
+        subtitle = settings.APPLICATION_DESC
+
+    return subtitle
+
 
 def class_listings(arg):
     return ['info', 'warning']
@@ -46,3 +66,4 @@ def icon_by_status(arg, state):
 def icon_by_status_tag(arg, state):
     icon = icon_by_status(None,state)
     return ("<img src='%s%s/%s' \>"  % ( settings.STATIC_URL, 'images', icon) )
+
