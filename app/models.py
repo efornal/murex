@@ -129,8 +129,16 @@ class Toner(models.Model):
 
     @classmethod
     def por_proveedor(cls, proveedor_id):
-        return Toner.objects.filter(proveedor_id = proveedor_id).order_by('marca')
+        query = "SELECT * " \
+        " FROM toners as t INNER JOIN proveedores as p on ( t.proveedor_id = p.id )" \
+        " WHERE t.id not in (select et.toner_id from estados_toners as et " \
+                       "where et.toner_id = t.id " \
+                       "and et.estado_id = {}) " \
+                       "and p.id = {} " \
+        " ORDER BY p.nombre ".format(Estado.DADO_DE_BAJA, proveedor_id)
+        return cls.objects.raw( query )
 
+    
 @receiver(post_save, sender=Toner)
 def estado_inicial(sender, instance, **kwargs):
     if kwargs['created']:
