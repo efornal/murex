@@ -183,7 +183,9 @@ def toner_detail(request,toner_id):
 @login_required
 @staff_member_required
 def search(request):
-    text_search = request.POST['search_field']
+    text_search = ''
+    if 'search_field' in request.POST:
+        text_search = request.POST['search_field']
     toners_list = Toner.objects.filter(identificador__contains=text_search).order_by('identificador')
     paginator = Paginator(toners_list, settings.PAGINATE_BY_PAGE)
     page = request.GET.get('page')
