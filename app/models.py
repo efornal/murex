@@ -47,6 +47,7 @@ class Impresora(models.Model):
 class Estado(models.Model):
     id = models.AutoField(primary_key=True,null=False)
     nombre = models.CharField(max_length=200,null=False)
+    DADO_DE_BAJA = 6
     
     class Meta:
         db_table = 'estados'
@@ -102,7 +103,18 @@ class Toner(models.Model):
         " FROM toners as t LEFT OUTER JOIN estados_toners as e ON ( t.id = e.toner_id )" \
         " WHERE e.id = (select id from estados_toners " \
                        "where toner_id = t.id order by fecha_inicio desc limit 1)" \
-        " ORDER BY e.estado_id ASC"
+                       "and e.estado_id != {}" \
+        " ORDER BY e.estado_id ASC".format(Estado.DADO_DE_BAJA)
+        return cls.objects.raw( query )
+
+    @classmethod
+    def por_modelos(cls):
+        query = "SELECT * " \
+        " FROM toners as t " \
+        " WHERE t.id not in (select et.toner_id from estados_toners as et " \
+                       "where et.toner_id = t.id " \
+                       "and et.estado_id = {})" \
+        " ORDER BY modelo, identificador".format(Estado.DADO_DE_BAJA)
         return cls.objects.raw( query )
 
     @classmethod

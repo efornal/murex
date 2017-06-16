@@ -2,6 +2,7 @@ from django import template
 from django.template.defaultfilters import stringfilter
 from django.conf import settings
 import logging
+import urllib
 
 register = template.Library()
 
@@ -67,3 +68,9 @@ def icon_by_status_tag(arg, state):
     icon = icon_by_status(None,state)
     return ("<img src='%s%s/%s' \>"  % ( settings.STATIC_URL, 'images', icon) )
 
+
+@register.simple_tag(takes_context=True)
+def url_replace(context, **kwargs):
+    query = context['request'].GET.dict()
+    query.update(kwargs)
+    return urllib.urlencode(query)

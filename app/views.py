@@ -100,11 +100,9 @@ def variations_states_list(toners):
 @login_required
 @staff_member_required
 def toners_por_modelos (request):
-    toners_list = Toner.objects.order_by('modelo','identificador')
-    paginator = Paginator(toners_list, settings.PAGINATE_BY_PAGE)
+    toners_list = Toner.por_modelos()
+    paginator = Paginator(list(toners_list), settings.PAGINATE_BY_PAGE)
     page = request.GET.get('page')
-#    states = Estado.objects.order_by('nombre')
-#    providers = Proveedor.objects.order_by('nombre')
     
     try:
         toners = paginator.page(page)
@@ -125,6 +123,7 @@ def toners_por_estados (request):
     toners_list = Toner.por_estados()
     paginator = Paginator(list(toners_list), settings.PAGINATE_BY_PAGE)
     page = request.GET.get('page')
+    
     try:
         toners = paginator.page(page)
     except PageNotAnInteger:
@@ -145,7 +144,6 @@ def toners(request):
     toners_list = Toner.objects.order_by('identificador','modelo')
     paginator = Paginator(toners_list, settings.PAGINATE_BY_PAGE)
     page = request.GET.get('page')
-
  
     try:
         toners = paginator.page(page)
@@ -246,11 +244,11 @@ def login_view(request):
 @staff_member_required
 def filtrar_listado (request):
 
-    if 'state' in request.POST and request.POST.get('state'):
-        toners_list = Toner.por_estado( request.POST.get('state') )
+    if 'state' in request.GET and request.GET.get('state'):
+        toners_list = Toner.por_estado( request.GET.get('state') )
 
-    elif 'provider' in request.POST and request.POST.get('provider'):
-        toners_list = Toner.por_proveedor( request.POST.get('provider') )
+    elif 'provider' in request.GET and request.GET.get('provider'):
+        toners_list = Toner.por_proveedor( request.GET.get('provider') )
     else:
         return redirect('index')
     

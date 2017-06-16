@@ -56,7 +56,7 @@
 
   <ul class="pager">
     {% if toners.has_previous %}
-    <li class="previous"><a href="?page={{ toners.previous_page_number }}">← {{ _('previous') }}</a></li>
+    <li class="previous"><a href="?{% url_replace page=toners.previous_page_number %}">← {{ _('previous') }}</a></li>
     {% endif %}
     {% if toners.paginator.num_pages > 1 %}
     <li>
@@ -64,7 +64,7 @@
     </li>
     {% endif %}
     {% if toners.has_next %}
-    <li class="next"><a href="?page={{ toners.next_page_number }}">{{ _('next') }} →</a></li>
+    <li class="next"><a href="?{% url_replace page=toners.next_page_number %}">{{ _('next') }} →</a></li>
     {% endif %}
   </ul>
 

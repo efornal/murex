@@ -65,7 +65,7 @@
               </form>
             </li>
             <li>
-              <form action="{%url 'filtrar_listado'%}" data-remote="true" method="post">
+              <form action="{%url 'filtrar_listado'%}" data-remote="true" method="get">
                 {% csrf_token %}
                 <select class="form-control" id="select_state" name="state">
                   <option value=''> ----  </option>
@@ -77,7 +77,7 @@
               </form>
             </li>
             <li>
-              <form action="{%url 'filtrar_listado'%}" data-remote="true" method="post">
+              <form action="{%url 'filtrar_listado'%}" data-remote="true" method="get">
                 {% csrf_token %}
                 <select class="form-control" id="select_provider" name="provider">
                   <option value='' selected="selected"> ---- </option>
