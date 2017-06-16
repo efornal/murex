@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-15 09:50-0300\n"
+"POT-Creation-Date: 2017-06-16 11:09-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,49 +11,53 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: murex/settings.py:27 murex/settings.tpl.py:26 templates/base.html:97
-#: templates/base.html:102
+#: decorators.py:14
+msgid "user_without_permissions"
+msgstr "The user does not have permissions to perform the requested actions"
+
+#: murex/settings.py:27 murex/settings.tpl.py:26 templates/base.html:106
+#: templates/base.html:111
 msgid "Spanish"
 msgstr "Spanish"
 
-#: murex/settings.py:28 murex/settings.tpl.py:27 templates/base.html:98
-#: templates/base.html:104
+#: murex/settings.py:28 murex/settings.tpl.py:27 templates/base.html:107
+#: templates/base.html:113
 msgid "English"
 msgstr "English"
 
-#: murex/settings.py:161 murex/settings.tpl.py:209
+#: murex/settings.py:162 murex/settings.tpl.py:210
 msgid "title"
 msgstr "Murex"
 
-#: templates/base.html:49 templates/toners.html:21
+#: templates/base.html:50
 msgid "toners"
 msgstr "Toners"
 
-#: templates/base.html:51
+#: templates/base.html:52
 msgid "toners_by_models"
 msgstr "By models"
 
-#: templates/base.html:52
+#: templates/base.html:53
 msgid "toners_by_state"
 msgstr "By state"
 
-#: templates/base.html:53
+#: templates/base.html:54
 msgid "toner_by_id"
 msgstr "By id"
 
-#: templates/base.html:61 templates/toner.html:35 templates/toners.html:28
+#: templates/base.html:63 templates/toner.html:21 templates/toners.html:19
 msgid "identifier"
 msgstr "Identifier"
 
-#: templates/base.html:95
+#: templates/base.html:104
 msgid "language"
 msgstr "language"
 
-#: templates/base.html:109
+#: templates/base.html:118
 msgid "registered_user"
 msgstr "Registered user"
 
-#: templates/base.html:113
+#: templates/base.html:122
 msgid "close_session"
 msgstr "Close session"
 
@@ -73,84 +77,84 @@ msgstr "Password"
 msgid "log_in"
 msgstr "Log in"
 
-#: templates/toner.html:18
+#: templates/toner.html:8 templates/toners.html:8
 msgid "toner_detail"
 msgstr "Toner detail"
 
-#: templates/toner.html:32
+#: templates/toner.html:18
 msgid "toner"
 msgstr "Toner"
 
-#: templates/toner.html:43 templates/toner_detail.html:26
-#: templates/toners.html:31
+#: templates/toner.html:29 templates/toner_detail.html:20
+#: templates/toners.html:22
 msgid "state"
 msgstr "State"
 
-#: templates/toner.html:46
+#: templates/toner.html:32
 msgid "pending"
 msgstr "Pending"
 
-#: templates/toner.html:52
+#: templates/toner.html:38
 msgid "refills"
 msgstr "Refills"
 
-#: templates/toner.html:62 templates/toners.html:30
+#: templates/toner.html:48 templates/toners.html:21
 msgid "trademark"
 msgstr "Trademark"
 
-#: templates/toner.html:68 templates/toners.html:29
+#: templates/toner.html:54 templates/toners.html:20
 msgid "model"
 msgstr "Model"
 
-#: templates/toner.html:78
+#: templates/toner.html:64
 msgid "printer"
 msgstr "Printer"
 
-#: templates/toner.html:84
+#: templates/toner.html:70
 msgid "supplier"
 msgstr "Supplier"
 
-#: templates/toner.html:94
+#: templates/toner.html:78
 msgid "description"
 msgstr "Description"
 
-#: templates/toner.html:102
+#: templates/toner.html:86
 msgid "updated"
 msgstr "Updated"
 
-#: templates/toner_detail.html:19
+#: templates/toner_detail.html:9
 msgid "detail_for"
 msgstr "Detail for"
 
-#: templates/toner_detail.html:27
+#: templates/toner_detail.html:21
 msgid "starting_date"
 msgstr "Starting date"
 
-#: templates/toner_detail.html:28
+#: templates/toner_detail.html:22
 msgid "ending_date"
 msgstr "Ending date"
 
-#: templates/toner_detail.html:45 templates/toners.html:62
+#: templates/toner_detail.html:40 templates/toners.html:54
 msgid "without_results"
 msgstr "Without results"
 
-#: templates/toner_detail.html:57 templates/toners.html:68
+#: templates/toner_detail.html:46 templates/toners.html:59
 msgid "previous"
 msgstr "Previous"
 
-#: templates/toner_detail.html:61 templates/toners.html:72
+#: templates/toner_detail.html:50 templates/toners.html:63
 msgid "page"
 msgstr "Page"
 
-#: templates/toner_detail.html:61 templates/toners.html:72
+#: templates/toner_detail.html:50 templates/toners.html:63
 msgid "of"
 msgstr "of"
 
-#: templates/toner_detail.html:65 templates/toners.html:76
+#: templates/toner_detail.html:54 templates/toners.html:67
 msgid "next"
 msgstr "Next"
 
-#: templates/toners.html:32
+#: templates/toners.html:23
 msgid "detail"
 msgstr "Detail"
 

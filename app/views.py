@@ -5,6 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.decorators import login_required
+from decorators import toner_permission_required
 from django.contrib.admin.views.decorators import staff_member_required
 
 from django.shortcuts import redirect
@@ -99,7 +100,9 @@ def variations_states_list(toners):
   
 @login_required
 @staff_member_required
+@toner_permission_required
 def toners_por_modelos (request):
+
     toners_list = Toner.por_modelos()
     paginator = Paginator(list(toners_list), settings.PAGINATE_BY_PAGE)
     page = request.GET.get('page')
