@@ -251,7 +251,7 @@ def filtrar_listado (request):
         toners_list = Toner.por_proveedor( request.GET.get('provider') )
     else:
         return redirect('index')
-    
+
     paginator = Paginator(list(toners_list), settings.PAGINATE_BY_PAGE)
     page = request.GET.get('page')
 

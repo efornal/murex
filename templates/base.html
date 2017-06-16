@@ -58,15 +58,19 @@
               <form method="post" action="{% url 'search' %}"
                     class="navbar-form navbar-left" id="search_form">
                 {% csrf_token %}
+                <div class="form-group">
                 <input class="form-control" name="search_field"
                        placeholder="{{ _('identifier') }}" type="text"
                        value="{{ text_search }}">&nbsp;&nbsp;
                 <i class="glyphicon glyphicon-search" style="right:40px;"></i>
+                </div>
               </form>
             </li>
             <li>
-              <form action="{%url 'filtrar_listado'%}" data-remote="true" method="get">
+              <form action="{%url 'filtrar_listado'%}" data-remote="true" method="get"
+                     class="navbar-form navbar-left">
                 {% csrf_token %}
+                <div class="form-group">
                 <select class="form-control" id="select_state" name="state">
                   <option value=''> ----  </option>
                   {% for state in states %}
@@ -74,11 +78,14 @@
                           {% ifequal state.id|add:0 current_state|add:0 %} selected="selected" {%endifequal%}>{{state.nombre}}</option>
                   {% endfor %}
                 </select>
+                </div>
               </form>
             </li>
             <li>
-              <form action="{%url 'filtrar_listado'%}" data-remote="true" method="get">
+              <form action="{%url 'filtrar_listado'%}" data-remote="true" method="get"
+                    class="navbar-form navbar-left">
                 {% csrf_token %}
+                <div class="form-group">
                 <select class="form-control" id="select_provider" name="provider">
                   <option value='' selected="selected"> ---- </option>
                   {% for provider in providers %}
@@ -86,6 +93,7 @@
                           {% ifequal provider.id|add:0 current_provider|add:0 %} selected="selected" {%endifequal%}>{{provider.nombre}}</option>
                   {% endfor %}
                 </select>
+                </div>
               </form>
             </li>
           </ul>
