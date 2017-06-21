@@ -42,9 +42,9 @@ def rotate_colour(color):
 def changes_models_list(toners):
     rows_of_changes = []
     model = ''
-    if toners:
+    if len(toners) > 0:
         model = toners[0].modelo
-    color = class_listings()[1]
+        color = class_listings()[1]
     for toner in toners:
         if (toner.modelo == model):
             rows_of_changes.append(color)
@@ -59,7 +59,7 @@ def changes_models_list(toners):
 def variations_models_list(toners):
     rows_of_changes = []
     model = ''
-    if toners:
+    if len(toners) > 0:
         model = toners[0].modelo
     for toner in toners:
         if (toner.modelo == model):
@@ -72,8 +72,9 @@ def variations_models_list(toners):
 
 def changes_states_list(toners):
     rows_of_changes = []
-    state = toners[0].ultimo_estado().id
-    color = class_listings()[1]
+    if len(toners) > 0:
+        state = toners[0].ultimo_estado().id
+        color = class_listings()[1]
     for toner in toners:
         if (toner.ultimo_estado().id == state):
             rows_of_changes.append(color)
@@ -87,7 +88,8 @@ def changes_states_list(toners):
 
 def variations_states_list(toners):
     rows_of_changes = []
-    state = toners[0].ultimo_estado().id
+    if len(toners) > 0:
+        state = toners[0].ultimo_estado().id
     for toner in toners:
         if (toner.ultimo_estado().id == state):
             rows_of_changes.append('')
