@@ -16,17 +16,9 @@ import ldap
 from django.utils.translation import ugettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
-APPLICATION_NAME= "Murex"
-APPLICATION_DESC= "Toner management"
-
-from django.utils.translation import ugettext_lazy as _
-LANGUAGE_CODE = 'es'
-LANGUAGES = (
-  ('es', _('Spanish')),
-  ('en', _('English')),
-)
-USE_I18N = True
+BASE_URL = "{{ app_base_url }}{{ app_url }}"
+APPLICATION_NAME= "{{ app_title|capitalize }}"
+APPLICATION_DESC= "{{ app_desc|capitalize }}"
 
 
 # Quick-start development settings - unsuitable for production
@@ -36,59 +28,9 @@ USE_I18N = True
 SECRET_KEY = 'e!y00g3a(%!+!7yr5)ese+fc==68t*%it$*b&axr=%hu*4c6x2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = {{ app_debug }}
 
 ALLOWED_HOSTS = ['*']
-
-# LDAP Configuration ==============/
-# LDAP server
-LDAP_SERVER = 'ldap://host_ldap:port'
-
-# Dn for entry
-LDAP_DN = 'dc=domain,dc=edu,dc=ar'
-
-# LDAP authentication
-#LDAP_USER_NAME='username'
-#LDAP_USER_PASS='password'
-
-# Organizational Unit for Person
-LDAP_PEOPLE = 'People'
-LDAP_PEOPLE = 'Group'
-# =================================/
-
-# =================================\
-# django ldap configuration
-
-import ldap
-from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
-
-import logging
-logger = logging.getLogger('django_auth_ldap')
-logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.DEBUG)
-
-
-AUTH_LDAP_SERVER_URI = LDAP_SERVER
-
-#AUTH_LDAP_BIND_DN = "cn=%s,%s" % ( LDAP_USER_NAME, LDAP_DN )
-#AUTH_LDAP_BIND_PASSWORD = LDAP_USER_PASS
-
-AUTH_LDAP_USER_SEARCH = LDAPSearch("ou=%s,%s" % (LDAP_PEOPLE,LDAP_DN),
-                                   ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
-AUTH_LDAP_USER_ATTR_MAP = {
-    "first_name": "givenName",
-    "last_name": "sn",
-    "email": "mail"
-}
-
-AUTHENTICATION_BACKENDS = (
-    'django_auth_ldap.backend.LDAPBackend',
-    'django.contrib.auth.backends.ModelBackend',
-)
-# =================================/
-
-
-# Application definition
 
 INSTALLED_APPS = (
     'suit',
@@ -124,66 +66,13 @@ ROOT_URLCONF = 'murex.urls'
 
 WSGI_APPLICATION = 'murex.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'murex_db',
-        'USER': 'murex_user',
-        'PASSWORD': 'user',
-        'PORT': '5432',        
-        'HOST': 'localhost',
-    },
-    'murex_owner': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'murex_db',
-        'USER': 'murex_owner',
-        'PASSWORD': 'owner',
-        'PORT': '5432',        
-        'HOST': 'localhost',
-    }
-}
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
-
-TIME_ZONE = 'America/Argentina/Buenos_Aires'
-
-USE_L10N = True
-
-USE_TZ = True
-
-LOCALE_PATHS = (
-     BASE_DIR + '/locale', )
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
-
-# set static path for production
-#STATIC_ROOT = '/srv/murex/shared/static'
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-    '/static/',
-)
-# If the user isn't logged in, redirect to
-#LOGIN_URL = '/login/'
-
-#LOGIN_REDIRECT_URL = '/app/login/'
-LOGIN_URL='/login/'
-PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
-#SITE_ID = 1
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(SETTINGS_PATH, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
-            'debug': True,
+            'debug': {{ app_debug }},
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -195,39 +84,127 @@ TEMPLATES = [
     },
 ]
 
+# Database
+# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '{{ db_name }}',
+        'USER': '{{ db_user }}',
+        'PASSWORD': '{{ db_pass }}',
+        'PORT': '{{ db_port }}',
+        'HOST': '{{ db_host }}',
+    },
+    '{{ db_user_owner }}': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '{{ db_name }}',
+        'USER': '{{ db_user_owner }}',
+        'PASSWORD': '{{ db_pass_owner }}',
+        'PORT': '{{ db_port }}',
+        'HOST': '{{ db_host }}',
+    },
+}
+
+# Internationalization
+# https://docs.djangoproject.com/en/1.7/topics/i18n/
+LANGUAGE_CODE = 'es'
+LANGUAGES = (
+  ('es', _('Spanish')),
+  ('en', _('English')),
+)
+
+TIME_ZONE = 'America/Argentina/Buenos_Aires'
+
+USE_L10N = True
+
+USE_TZ = True
+
+USE_I18N = True
+
+LOCALE_PATHS = (
+     BASE_DIR + '/locale', )
+
+DEFAULT_CHARSET = 'utf-8'
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.7/howto/static-files/
+{% if app_static_root %}
+STATIC_ROOT = "{{ app_static_root }}"
+{% endif %}
+
+STATIC_URL="{{ app_static_url }}"
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
+# If the user isn't logged in, redirect to
+LOGIN_URL="{{ app_login_url }}"
+
+LOGIN_REDIRECT_URL = "{{ app_login_redirect_url }}"
+
 # nombre de la clase css usada como separador en listados
-CSS_SEPARATOR_NAME = 'separator'
+CSS_SEPARATOR_NAME = '{{ css_separator_name }}'
 
 # nombre de la clase (boostrap) usado como separador de color
-CSS_SEPARATOR_COLOR1 = 'info'
-CSS_SEPARATOR_COLOR2 = 'warning'
+CSS_SEPARATOR_COLOR1 = '{{ css_separator_color1 }}'
+CSS_SEPARATOR_COLOR2 = '{{ css_separator_color2 }}'
 
 # Numero de items por pagina para todos los listados
-PAGINATE_BY_PAGE = 25
-
+PAGINATE_BY_PAGE = {{ paginate_by_page }}
 
 SUIT_CONFIG = {
-    'ADMIN_NAME': _('title')
+    'ADMIN_NAME': APPLICATION_NAME
 }
 
 # =================================\
+# ldap configuration
+LDAP_SERVER = "{{ ldap_server }}"
+LDAP_DN = "{{ ldap_dn }}"
+
+# Organizational Unit for Person
+LDAP_PEOPLE = "{{ ldap_people }}"
+LDAP_GROUP  = "{{ ldap_group }}"
+# =================================/
+
+
+# =================================\
 # django ldap configuration
-
-import ldap
-from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
-
-import logging
-logger = logging.getLogger('django_auth_ldap')
-logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.DEBUG)
-
+#
+#
+# Ldap Group Type
+from django_auth_ldap.config import LDAPSearch, PosixGroupType
+AUTH_LDAP_GROUP_SEARCH = LDAPSearch("ou={},{}".format(LDAP_GROUP,LDAP_DN),
+                                    ldap.SCOPE_SUBTREE, "(objectClass=posixGroup)"
+)
+AUTH_LDAP_GROUP_TYPE =  PosixGroupType()
+#
+#
+# User will be updated with LDAP every time the user logs in.
+# Otherwise, the User will only be populated when it is automatically created.
+AUTH_LDAP_ALWAYS_UPDATE_USER = True
+#
+#
+# Simple group restrictions
+# AUTH_LDAP_REQUIRE_GROUP = "cn=users,ou={},{}".format(LDAP_GROUP,LDAP_DN)
+# AUTH_LDAP_DENY_GROUP = "cn=denygroup,ou={},{}".format(LDAP_GROUP,LDAP_DN)
+#
+# Defines the django admin attribute
+# according to whether the user is a member or not in the specified group
+AUTH_LDAP_USER_FLAGS_BY_GROUP = {
+    "is_active": "cn=users,ou={},{}".format(LDAP_GROUP,LDAP_DN),
+    "is_staff": "cn=users,ou={},{}".format(LDAP_GROUP,LDAP_DN),
+    "is_superuser": "cn=admin,ou={},{}".format(LDAP_GROUP,LDAP_DN),
+}
+#
+# Ldap User Auth
+#AUTH_LDAP_BIND_DN = "cn={},{}".format(LDAP_USERNAME,LDAP_DN)
+#AUTH_LDAP_BIND_PASSWORD = LDAP_PASSWORD
 
 AUTH_LDAP_SERVER_URI = LDAP_SERVER
 
-#AUTH_LDAP_BIND_DN = "cn=%s,%s" % ( LDAP_USER_NAME, LDAP_DN )
-#AUTH_LDAP_BIND_PASSWORD = LDAP_USER_PASS
-
-AUTH_LDAP_USER_SEARCH = LDAPSearch("ou=%s,%s" % (LDAP_PEOPLE,LDAP_DN),
+AUTH_LDAP_USER_SEARCH = LDAPSearch("ou={},{}".format(LDAP_PEOPLE,LDAP_DN),
                                    ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
 AUTH_LDAP_USER_ATTR_MAP = {
     "first_name": "givenName",
@@ -239,9 +216,10 @@ AUTHENTICATION_BACKENDS = (
     'django_auth_ldap.backend.LDAPBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
 # =================================/
 
-# loggin querys in develompent
+# ##loggin querys in develompent
 # if DEBUG:
 #     import logging
 #     l = logging.getLogger('django.db.backends')

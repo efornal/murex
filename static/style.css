@@ -1,27 +1,78 @@
 body {
+    background: url("images/bgpattern.png") repeat scroll 0% 0%;
+    border-top: 5px solid #008bb8;
     padding-top: 70px;
+}
+
+.navbar {
+    border-top: 5px solid #008bb8;
+}
+
+.navbar-brand {
+    overflow: hidden;
+    line-height: 20px;
+    height: 50px;
+    padding: 6px 0px;
+    margin-left: 0px !important;
+    float: left;
+    padding: 5px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    height: 50px;
 }
 
 .navbar-brand > small {
     font-size: 75%;
+    color: #00728f !important;
+}
+
+.navbar-brand > small:hover {
+    color: #004c5f !important;
 }
 
 .navbar-brand > p {
     padding: 0px;
     margin: 0px;
-    margin-top: -6px;
     color: #00728f;
+}
+
+.navbar-brand > p:hover {
+    color: #004c5f !important;
+}
+
+legend {
+    font-size: 18px;
+}
+
+.icon-pointer{
+    cursor: pointer;
 }
 
 .logo-header{
     float: left;
-    margin-right: 20px;
 }
-legend {
-    font-size: 18px;
+
+footer ul {
+    background-color: #f6f6f6 !important;
 }
-.icon-pointer{
-    cursor: pointer;
+.btn-default {
+    background-color: #00728f !important;
+    background-image: none !important;
+}
+.btn-default:hover {
+    background-color: #005e76 !important;
+}
+.btn-default:focus {
+    background-color: #005e76 !important;
+}
+a {
+    color: #00728f !important;
+}
+a:hover {
+    color: #004c5f !important;
+}
+a:focus {
+    color: #004c5f !important;
 }
 .page-header {
     margin: 10px 0 0 0;
