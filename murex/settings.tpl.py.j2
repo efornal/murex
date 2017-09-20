@@ -133,6 +133,12 @@ DEFAULT_CHARSET = 'utf-8'
 STATIC_ROOT = "{{ app_static_root }}"
 {% endif %}
 
+# media files
+{% if app_media_root %}
+MEDIA_ROOT = "{{ app_media_root }}"
+MEDIA_URL  = "{{ app_media_url }}"
+{% endif %}
+
 STATIC_URL="{{ app_static_url }}"
 
 STATICFILES_DIRS = (
