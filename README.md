@@ -20,6 +20,11 @@ sudo apt-get install libgtk2.0-dev
 sudo apt-get install libgirepository1.0-dev
 ```
 
+### Python lib Installation
+```bash
+pip install -r requieremens.txt
+```
+
 ### App configuration for production
 ```bash
 git clone https://github.com/efornal/murex.git
