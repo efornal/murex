@@ -12,7 +12,7 @@ django-cleanup==3.2.0
 django-datetime-widget==0.9.3
 django-durationfield==0.5.5
 django-extensions==2.1.6
-django-jquery==3.1.0
+django-jquery==2.2.4
 django-jquery-ui==1.11.4.1
 django-suit==0.2.26
 django-suit-locale==1.0.10
