@@ -41,7 +41,7 @@ python-ldap==3.2.0
 python-redmine==2.2.1
 pytz==2019.3
 pyxdg==0.25
-PyYAML==5.3
+PyYAML==5.4
 reportlab==3.5.34
 requests==2.22.0
 SecretStorage==2.3.1
